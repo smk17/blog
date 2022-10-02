@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes, SyncOptions } from "sequelize";
+import { Sequelize, Model, DataTypes, SyncOptions } from "sequelize";
 
 const sequelize = new Sequelize(
   process.env.NEXT_PUBLIC_DB_DATABASE!,
@@ -15,12 +15,30 @@ export const sync = async (options?: SyncOptions) => {
   return sequelize.sync(options);
 };
 
-export const User = sequelize.define("User", {
-  username: DataTypes.STRING,
-  password: DataTypes.DATE,
-});
+export class User extends Model {
+  declare id: number;
+  declare username: string;
+  declare password: string;
+}
+User.init(
+  {
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+  },
+  { sequelize }
+);
 
-export const Blog = sequelize.define("User", {
-  title: DataTypes.STRING,
-  content: DataTypes.TEXT,
-});
+export class Blog extends Model {
+  declare id: number;
+  declare title: string;
+  declare content: string;
+  declare status: string;
+}
+Blog.init(
+  {
+    title: DataTypes.STRING,
+    status: DataTypes.STRING,
+    content: DataTypes.TEXT,
+  },
+  { sequelize }
+);

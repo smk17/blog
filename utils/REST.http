@@ -4,3 +4,17 @@ content-type: application/json
 {
     "force": true
 }
+
+GET http://localhost:3000/api/blog?current=0&pageSize=10 HTTP/1.1
+content-type: application/json
+
+GET http://localhost:3000/api/blog/1 HTTP/1.1
+content-type: application/json
+
+PUT http://localhost:3000/api/blog HTTP/1.1
+content-type: application/json
+
+{
+    "title": "COMMUNITY GUIDELINES",
+    "content": "Welcome to Seng Mitnick Blogs. We try our best to make sure that the discussions on our articles are the troll, spam and abuse free but we’re not omnipresent. The comment section can be a great place for interaction with readers, writers and even for spawning stimulating conversation – it can be a great place for all of us! To ensure that you have a good time over here at SENGMITNICK, please make sure to stick to the following guidelines:"
+}

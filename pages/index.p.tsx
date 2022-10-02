@@ -5,12 +5,13 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <meta
-          name="description"
-          content="I am a web developer helping make the world a better place through JavaScript."
-        />
+        <meta name="description" content={process.env.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div>
+        <div>{process.env.title}</div>
+        <div>{process.env.description}</div>
+      </div>
     </>
   );
 };
