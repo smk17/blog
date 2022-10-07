@@ -7,6 +7,8 @@ import { useRequest, useSetState } from "ahooks";
 import { pick } from "lodash";
 import { useRouter } from "next/router";
 
+import "react-markdown-editor-lite/lib/index.css";
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const slug = context.query.slug as string;
   if (slug !== "new") {
@@ -15,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: { blog },
     };
   }
-  return { props: {} };
+  return { props: { blog: {} } };
 };
 
 const Home: NextPage<{ blog?: Blog }> = ({ blog }) => {
@@ -43,7 +45,9 @@ const Home: NextPage<{ blog?: Blog }> = ({ blog }) => {
   return (
     <div className="h-full flex flex-col gap-3 p-6">
       <Head>
-        <title>文章管理 - {process.env.title}</title>
+        <title>
+          {blog?.title ? `编辑${blog?.title}` : `新文章`} - {process.env.title}
+        </title>
         <meta name="description" content="文章管理" />
       </Head>
 

@@ -2,17 +2,17 @@
 @import "./github-markdown-light.scss";
 @import "./github-markdown-dark.scss";
 
-.markdown {
+.mdeditor {
   :global {
     @include math;
     @include github-markdown-light;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .markdown {
-    :global {
-      @include github-markdown-dark;
-    }
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   .mdeditor {
+//     :global {
+//       @include github-markdown-dark;
+//     }
+//   }
+// }

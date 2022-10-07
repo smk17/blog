@@ -1,17 +1,29 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
+import type { Blog } from "utils/db";
 import Head from "next/head";
+import { parseMarkdown, request } from "utils";
 
-const Home: NextPage = () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const slug = context.query.slug as string;
+  const blog = await request.get<Blog>("/api/blog/" + slug);
+  blog.content = await parseMarkdown(blog.content);
+  return { props: { blog } };
+};
+
+const Home: NextPage<{ blog: Blog }> = ({ blog }) => {
   return (
-    <div className="flex">
+    <div className="flex flex-col">
       <Head>
-        <title>Seng Mitnick</title>
-        <meta
-          name="description"
-          content="I am a web developer helping make the world a better place through JavaScript."
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <title>
+          {blog.title} - {process.env.title}
+        </title>
+        <meta name="description" content={blog.title} />
       </Head>
+      <div>{blog.title}</div>
+      <div
+        className="markdown-body"
+        dangerouslySetInnerHTML={{ __html: blog.content }}
+      />
     </div>
   );
 };

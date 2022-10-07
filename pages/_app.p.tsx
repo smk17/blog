@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import Link from "next/link";
 import classNames from "classnames";
 
-import "react-markdown-editor-lite/lib/index.css";
+import "styles/markdown/index.scss";
 
 interface LayoutProps {
   children?: React.ReactNode;

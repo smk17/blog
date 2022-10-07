@@ -10,6 +10,14 @@ const nextConfig = {
     description:
       "I am a web developer helping make the world a better place through JavaScript.",
   },
+  rewrites: async function () {
+    return [
+      {
+        source: "/blog",
+        destination: "/blog/page/1",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
