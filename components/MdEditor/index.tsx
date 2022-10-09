@@ -5,7 +5,6 @@ export const Editor = dynamic(() => import("react-markdown-editor-lite"), {
   ssr: false,
 });
 
-
 interface EditorProps {
   id?: string;
   defaultValue?: string;
@@ -15,15 +14,13 @@ interface EditorProps {
   placeholder?: string;
   readOnly?: boolean;
   className?: string;
-  onChange?: (
-    data: {
-      text: string;
-      html: string;
-    },
-    event?: React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
+  onChange?: (value?: string) => void;
 }
 
 export const MdEditor = (props: EditorProps) => (
-  <Editor {...props} renderHTML={parseMarkdown} />
+  <Editor
+    {...props}
+    onChange={({ text }) => props.onChange?.(text)}
+    renderHTML={parseMarkdown}
+  />
 );

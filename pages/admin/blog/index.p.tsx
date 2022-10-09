@@ -2,6 +2,7 @@ import { usePagination } from "ahooks";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { ProTable } from "procomponents";
 import { request } from "utils";
 import type { Blog } from "utils/db";
 
@@ -17,6 +18,33 @@ const Home: NextPage = () => {
         <title>文章管理 - {process.env.title}</title>
         <meta name="description" content="文章管理" />
       </Head>
+      <ProTable
+        cardBordered
+        rowKey="id"
+        request={(params = {}) => request.get("/api/blog", { params })}
+        columns={[
+          {
+            title: "标题",
+            dataIndex: "title",
+            ellipsis: true,
+          },
+          {
+            title: "操作",
+            width: 120,
+            valueType: "option",
+            key: "option",
+            render: (_, record) => [
+              <Link key="editable" href={`/admin/blog/${record.id}`}>
+                <a>编辑</a>
+              </Link>,
+              <Link key="view" href={`/blog/${record.id}`}>
+                <a target="_blank">查看</a>
+              </Link>,
+            ],
+          },
+        ]}
+      />
+      {/* 
       {loading ? (
         <div className="flex w-full h-60 items-center justify-center">
           loading...
@@ -56,7 +84,7 @@ const Home: NextPage = () => {
             </table>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };

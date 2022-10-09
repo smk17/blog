@@ -19,8 +19,9 @@ export default async function handler(
         offset: current * pageSize,
       });
       res.status(200).json({
+        success: true,
         total: blogs.count,
-        list: blogs.rows.map((row) => pick(row, order)),
+        data: blogs.rows.map((row) => pick(row, order)),
       });
       return;
     }
