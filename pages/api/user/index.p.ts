@@ -1,13 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next-global'
+import { createUser } from "collections/User";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-  name: string
-}
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  if (req.method === "PUT") {
+    const { name, email, avatar } = req.body;
+    const blog = await createUser({ name, email, avatar });
+    res.status(200).json(JSON.parse(JSON.stringify(blog)));
+    return;
+  }
+  res.status(200).json({ name: "John Doe" });
 }
