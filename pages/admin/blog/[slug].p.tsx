@@ -1,18 +1,18 @@
 import type { GetServerSideProps, NextPage } from "next";
-import type { Blog } from "utils/db";
 import Head from "next/head";
 import { renderToBody, request } from "utils";
 import { MdEditor } from "components";
 import { useRequest, useSetState } from "ahooks";
 import { pick } from "lodash";
 import { useRouter } from "next/router";
+import { BlogInfo, getBlog } from "collections/Blog";
 
 import "react-markdown-editor-lite/lib/index.css";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const slug = context.query.slug as string;
   if (slug !== "new") {
-    const blog = await request.get<Blog>("/api/blog/" + slug);
+    const blog = await getBlog(slug);
     return {
       props: { blog },
     };
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: { blog: {} } };
 };
 
-const Home: NextPage<{ blog?: Blog }> = ({ blog }) => {
+const Home: NextPage<{ blog?: BlogInfo }> = ({ blog }) => {
   const router = useRouter();
   const slug = router.query.slug as string;
   const [state, setState] = useSetState(() => pick(blog, ["title", "content"]));
@@ -70,7 +70,7 @@ const Home: NextPage<{ blog?: Blog }> = ({ blog }) => {
       <MdEditor
         className="flex-1"
         value={state.content}
-        onChange={({ text }) => setState({ content: text })}
+        onChange={(content) => setState({ content })}
       />
     </div>
   );

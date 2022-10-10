@@ -6,10 +6,11 @@ declare namespace NodeJS {
   }
 }
 
-declare namespace OreJS {
-  interface Result<D> {
-    total: number;
-    list: D[];
+declare namespace Pagination {
+  interface Params {
+    [key: string]: any;
+    current: number;
+    pageSize: number;
   }
 }
 

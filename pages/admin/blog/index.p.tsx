@@ -1,17 +1,10 @@
-import { usePagination } from "ahooks";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { ProTable } from "procomponents";
 import { request } from "utils";
-import type { Blog } from "utils/db";
 
 const Home: NextPage = () => {
-  const { data, loading } = usePagination(({ current, pageSize }) =>
-    request.get<OreJS.Result<Blog>>("/api/blog", {
-      params: { current, pageSize },
-    })
-  );
   return (
     <>
       <Head>
@@ -44,47 +37,6 @@ const Home: NextPage = () => {
           },
         ]}
       />
-      {/* 
-      {loading ? (
-        <div className="flex w-full h-60 items-center justify-center">
-          loading...
-        </div>
-      ) : (
-        <div className="flex flex-col p-6">
-          <div className="w-full flex justify-between mb-6">
-            <div>文章列表</div>
-            <div className="flex items-center gap-3">
-              <Link href="/admin/blog/new">
-                <a className="btn btn-primary">新增</a>
-              </Link>
-            </div>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="table table-zebra w-full">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>标题</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.list.map((blog) => (
-                  <tr className="hover" key={blog.id}>
-                    <th>{blog.id}</th>
-                    <td>{blog.title}</td>
-                    <td>
-                      <Link href={`/admin/blog/${blog.id}`}>
-                        <a className="btn btn-link">编辑</a>
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )} */}
     </>
   );
 };

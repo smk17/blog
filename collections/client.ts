@@ -6,6 +6,13 @@ import {
   SchemaDefinitionType,
 } from "mongoose";
 
+interface Timestamps {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type IModel = Timestamps & { id: string };
+
 export function connect() {
   return mongooseConnect(process.env.NEXT_PUBLIC_DB_URI!);
 }
@@ -18,5 +25,5 @@ export function createModel<T>(
     id: true,
     timestamps: true,
   });
-  return model<T & { createdAt: string; updatedAt: string }>(name, schema);
+  return model<T & Timestamps>(name, schema);
 }
