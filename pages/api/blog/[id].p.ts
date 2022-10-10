@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { errorToJSON } from "utils";
-import { updateBlog } from "collections/Blog";
+import { descriptor, getBlogById, updateBlog } from "collections";
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,10 +10,20 @@ export default async function handler(
   try {
     const id = req.query.id as string;
 
+    if (req.method === "GET") {
+      if (id === "new") {
+        res.status(200).json({});
+        return;
+      }
+      const blog = await descriptor(getBlogById)(id);
+      res.status(200).json(blog.toJSON());
+      return;
+    }
+
     if (req.method === "POST") {
       const { slug, title, content } = req.body;
 
-      await updateBlog(id, { slug, title, content });
+      await descriptor(updateBlog)(id, { slug, title, content });
       res.status(200).json({ id });
       return;
     }

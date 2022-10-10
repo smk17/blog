@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { ProTable } from "procomponents";
+import { PlusOutlined } from "@ant-design/icons";
 import { request } from "utils";
 
 const Home: NextPage = () => {
@@ -35,6 +36,14 @@ const Home: NextPage = () => {
               </Link>,
             ],
           },
+        ]}
+        toolBarRender={() => [
+          <Link key="new" href={`/admin/blog/new`}>
+            <a className="flex items-center gap-1">
+              <PlusOutlined />
+              新建
+            </a>
+          </Link>,
         ]}
       />
     </>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ProLayout, PageContainer } from "procomponents";
 import { defaultProps } from "./defaultProps";
 
@@ -9,7 +10,7 @@ export const AdminLayout = ({ children }: Props) => {
   return (
     <div className="w-screen h-screen">
       <ProLayout {...defaultProps}>
-        <PageContainer>{children}</PageContainer>
+        <PageContainer breadcrumbRender={false}>{children}</PageContainer>
       </ProLayout>
     </div>
   );

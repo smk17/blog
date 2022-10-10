@@ -1,7 +1,8 @@
 import {
-  connect as mongooseConnect,
   model,
   models,
+  connect,
+  connection,
   Schema,
   Model,
   SchemaDefinition,
@@ -15,8 +16,14 @@ interface Timestamps {
 
 export type IModel = Timestamps & { id: string };
 
-export function connect() {
-  return mongooseConnect(process.env.NEXT_PUBLIC_DB_URI!);
+function descriptor<T>(descriptor: T): T;
+function descriptor(descriptor: (...args: any) => Promise<any>) {
+  return async function (this: any, ...args: any) {
+    await connect(process.env.NEXT_PUBLIC_DB_URI!);
+    const result = await descriptor.apply(this, args);
+    await connection.close();
+    return result;
+  };
 }
 
 export function createModel<T>(
@@ -30,3 +37,5 @@ export function createModel<T>(
 
   return models[name] || model<T & Timestamps>(name, schema);
 }
+
+export { descriptor };

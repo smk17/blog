@@ -1,4 +1,4 @@
-import { IModel, connect, createModel } from "./client";
+import { IModel, createModel } from "./client";
 
 interface IBlog {
   slug: string;
@@ -10,14 +10,22 @@ interface IBlog {
 export type BlogInfo = IBlog & IModel;
 
 const Blog = createModel<IBlog>("Blog", {
+  slug: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
   status: String,
 });
 
 export async function getBlog(slug: string) {
-  await connect();
   const doc = await Blog.findOne({ slug }).exec();
+  return doc;
+}
+
+export async function getBlogById(id: string) {
+  const doc = await Blog.findById(id).exec();
+  if (doc === null) {
+    throw Error(`Blog 不存在`);
+  }
   return doc;
 }
 
@@ -27,15 +35,12 @@ export async function updateBlog(id: string, blog: IBlog, checkSlug = false) {
     if (ret !== null) {
       throw Error(`${blog.slug} 已存在`);
     }
-  } else {
-    await connect();
   }
 
   const doc = await Blog.findByIdAndUpdate(id, blog);
   if (doc === null) {
     throw Error(`Blog 不存在`);
   }
-
   return doc;
 }
 
@@ -54,18 +59,17 @@ export async function findBlog({
   pageSize,
   ...blog
 }: Pagination.Params) {
-  await connect();
   const blogs = await Blog.find(blog)
     .skip(current * pageSize)
     .limit(pageSize)
     .sort({ _id: -1 })
     .exec();
 
-  return blogs;
+  return blogs.map((doc) => ({ ...doc.toJSON(), id: doc._id }));
 }
 
 export async function findBlogAndCount(params: Pagination.Params) {
-  const total = await Blog.count();
+  const total = await Blog.find(params.blog).count().exec();
   const blogs = await findBlog(params);
 
   return { success: true, total, data: blogs };

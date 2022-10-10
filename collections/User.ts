@@ -1,4 +1,4 @@
-import { connect, createModel } from "./client";
+import { createModel } from "./client";
 
 interface IUser {
   name: string;
@@ -13,8 +13,6 @@ const User = createModel<IUser>("User", {
 });
 
 export async function createUser(user: IUser) {
-  await connect();
-
   const doc = new User(user);
   await doc.save();
   return doc;

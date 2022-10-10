@@ -1,11 +1,11 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
-import { BlogInfo, findBlog } from "collections/Blog";
+import { BlogInfo, descriptor, findBlog } from "collections";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const pageSize = 10;
   const current = +(context.query.current || 1) - 1;
-  const list = await findBlog({ current, pageSize });
+  const list = await descriptor(findBlog)({ current, pageSize });
   return { props: { list } };
 };
 
