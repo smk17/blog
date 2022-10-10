@@ -1,7 +1,9 @@
 import {
   connect as mongooseConnect,
   model,
+  models,
   Schema,
+  Model,
   SchemaDefinition,
   SchemaDefinitionType,
 } from "mongoose";
@@ -20,10 +22,11 @@ export function connect() {
 export function createModel<T>(
   name: string,
   definition: SchemaDefinition<SchemaDefinitionType<T>>
-) {
+): Model<T & Timestamps, {}, {}, {}, any> {
   const schema = new Schema<any>(definition, {
     id: true,
     timestamps: true,
   });
-  return model<T & Timestamps>(name, schema);
+
+  return models[name] || model<T & Timestamps>(name, schema);
 }
