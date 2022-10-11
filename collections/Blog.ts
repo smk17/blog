@@ -65,7 +65,7 @@ export async function findBlog({
     .sort({ _id: -1 })
     .exec();
 
-  return blogs.map((doc) => ({ ...doc.toJSON(), id: doc._id }));
+  return blogs;
 }
 
 export async function findBlogAndCount(params: Pagination.Params) {

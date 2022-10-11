@@ -7,3 +7,7 @@ export function errorToJSON(error: Error | unknown) {
     ...JSON.parse(JSON.stringify(error, Object.getOwnPropertyNames(error))),
   };
 }
+
+export function serializable<T>(o: T) {
+  return JSON.parse(JSON.stringify(o));
+}

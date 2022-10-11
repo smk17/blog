@@ -18,21 +18,28 @@ const Home: NextPage = () => {
         request={(params = {}) => request.get("/api/blog", { params })}
         columns={[
           {
+            title: "短链",
+            dataIndex: "slug",
+            width: 200,
+            render: (_, record) => (
+              <Link href={`/blog/${record.slug}`}>
+                <a target="_blank">{record.slug}</a>
+              </Link>
+            ),
+          },
+          {
             title: "标题",
             dataIndex: "title",
             ellipsis: true,
           },
           {
             title: "操作",
-            width: 120,
+            width: 80,
             valueType: "option",
             key: "option",
             render: (_, record) => [
-              <Link key="editable" href={`/admin/blog/${record.id}`}>
+              <Link key="editable" href={`/admin/blog/${record._id}`}>
                 <a>编辑</a>
-              </Link>,
-              <Link key="view" href={`/blog/${record.id}`}>
-                <a target="_blank">查看</a>
               </Link>,
             ],
           },
