@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
+export { getServerSideProps } from 'pages/admin/utils';
+
 const Home: NextPage = () => {
   return (
     <>

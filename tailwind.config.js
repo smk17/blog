@@ -1,21 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  important: true,
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },
   daisyui: {
     styled: true,
-    themes: ["light", "dark"],
+    themes: ['light', 'dark'],
     base: true,
     utils: true,
     logs: true,
     rtl: false,
-    prefix: "",
-    darkTheme: "dark",
+    prefix: '',
+    darkTheme: 'dark',
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

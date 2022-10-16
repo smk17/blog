@@ -1,33 +1,26 @@
-import Link from "next/link";
-import { CrownFilled } from "@ant-design/icons";
-import type { ProLayoutProps } from "@ant-design/pro-layout";
+import Link from 'next/link';
+import { CrownFilled } from '@ant-design/icons';
+import type { ProLayoutProps } from '@ant-design/pro-layout';
 
 export const defaultProps: ProLayoutProps = {
-  title: "管理后台",
+  title: '管理后台',
   route: {
-    path: "/admin",
+    path: '/admin',
     children: [
       {
-        name: "文章",
-        path: "/admin/blog",
+        name: '文章',
+        path: '/admin/blog',
         icon: <CrownFilled />,
         hideChildrenInMenu: true,
         children: [
-          { name: "创建文章", path: "/admin/blog/new" },
-          { name: "编辑文章", path: "/admin/blog/:id" },
+          { name: '创建文章', path: '/admin/blog/new' },
+          { name: '编辑文章', path: '/admin/blog/:id' },
         ],
       },
-      { name: "标签", path: "/admin/tag", icon: <CrownFilled /> },
-      { name: "发布", path: "/admin/release", icon: <CrownFilled /> },
-      { name: "素材库", path: "/admin/resource", icon: <CrownFilled /> },
+      { name: '标签', path: '/admin/tag', icon: <CrownFilled /> },
+      { name: '发布', path: '/admin/release', icon: <CrownFilled /> },
+      { name: '素材库', path: '/admin/resource', icon: <CrownFilled /> },
     ],
   },
-  avatarProps: {
-    src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
-    title: "Admin",
-    size: "small",
-  },
-  menuItemRender: (item, dom) => (
-    <Link href={item.path ?? "/admin"}>{dom}</Link>
-  ),
+  menuItemRender: (item, dom) => <Link href={item.path ?? '/admin'}>{dom}</Link>,
 };

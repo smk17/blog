@@ -1,9 +1,11 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
-import { ProTable } from "procomponents";
-import { PlusOutlined } from "@ant-design/icons";
-import { request } from "utils";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import { ProTable } from 'procomponents';
+import { PlusOutlined } from '@ant-design/icons';
+import { request } from 'utils';
+
+export { getServerSideProps } from 'pages/admin/utils';
 
 const Home: NextPage = () => {
   return (
@@ -15,11 +17,11 @@ const Home: NextPage = () => {
       <ProTable
         cardBordered
         rowKey="id"
-        request={(params = {}) => request.get("/api/blog", { params })}
+        request={(params = {}) => request.get('/api/blog', { params })}
         columns={[
           {
-            title: "短链",
-            dataIndex: "slug",
+            title: '短链',
+            dataIndex: 'slug',
             width: 200,
             render: (_, record) => (
               <Link href={`/blog/${record.slug}`}>
@@ -28,15 +30,15 @@ const Home: NextPage = () => {
             ),
           },
           {
-            title: "标题",
-            dataIndex: "title",
+            title: '标题',
+            dataIndex: 'title',
             ellipsis: true,
           },
           {
-            title: "操作",
+            title: '操作',
             width: 80,
-            valueType: "option",
-            key: "option",
+            valueType: 'option',
+            key: 'option',
             render: (_, record) => [
               <Link key="editable" href={`/admin/blog/${record._id}`}>
                 <a>编辑</a>

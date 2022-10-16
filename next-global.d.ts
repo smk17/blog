@@ -3,6 +3,11 @@ declare namespace NodeJS {
   interface ProcessEnv {
     readonly title: string;
     readonly description: string;
+
+    readonly MONGODB_URI: string;
+    readonly NEXTAUTH_URL: string;
+    readonly GITHUB_ID: string;
+    readonly GITHUB_SECRET: string;
   }
 }
 
@@ -14,7 +19,7 @@ declare namespace Pagination {
   }
 }
 
-declare module "*.module.less" {
+declare module '*.module.less' {
   const classes: { readonly [key: string]: string };
   export default classes;
 }
