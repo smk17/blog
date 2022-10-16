@@ -1,13 +1,15 @@
-import { IModel, createModel } from "./client";
+import { createModel } from './client';
 
 interface ITag {
   slug: string;
   name: string;
+  count?: number;
 }
 
-const Tag = createModel<ITag>("Tag", {
+const Tag = createModel<ITag>('Tag', {
   slug: { type: String, required: true },
   name: { type: String, required: true },
+  count: { type: Number, default: 0 },
 });
 
 export async function getTag(slug: string) {
@@ -30,11 +32,7 @@ export async function findTagAll() {
   return tags;
 }
 
-export async function findTag({
-  current,
-  pageSize,
-  ...tag
-}: Pagination.Params) {
+export async function findTag({ current, pageSize, ...tag }: Pagination.Params) {
   const tags = await Tag.find(tag)
     .skip(current * pageSize)
     .limit(pageSize)

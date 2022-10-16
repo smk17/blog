@@ -1,18 +1,24 @@
-import { IModel, createModel } from "./client";
+import { IModel, createModel } from './client';
 
 interface IBlog {
   slug: string;
   title: string;
-  content: string;
+  cover?: string;
+  content?: string;
   status?: string;
+  type?: string;
+  tags?: Array<{ value: string; text: string }>;
 }
 
 export type BlogInfo = IBlog & IModel;
 
-const Blog = createModel<IBlog>("Blog", {
+const Blog = createModel<IBlog>('Blog', {
   slug: { type: String, required: true },
   title: { type: String, required: true },
-  content: { type: String, required: true },
+  content: { type: String, default: '' },
+  type: { type: String, default: 'blog' },
+  tags: { type: Array, default: [] },
+  cover: String,
   status: String,
 });
 
@@ -54,11 +60,7 @@ export async function createBlog(blog: IBlog) {
   return doc;
 }
 
-export async function findBlog({
-  current,
-  pageSize,
-  ...blog
-}: Pagination.Params) {
+export async function findBlog({ current, pageSize, ...blog }: Pagination.Params) {
   const blogs = await Blog.find(blog)
     .skip(current * pageSize)
     .limit(pageSize)

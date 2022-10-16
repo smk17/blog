@@ -12,6 +12,9 @@ const nextConfig = {
     description:
       "I am a web developer helping make the world a better place through JavaScript.",
   },
+  images: {
+    domains: ['mmbiz.qpic.cn'],
+  },
   rewrites: async function () {
     return [
       {

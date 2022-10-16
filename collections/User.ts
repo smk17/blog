@@ -1,15 +1,21 @@
-import { createModel } from "./client";
+import { createModel } from './client';
 
 interface IUser {
   name: string;
-  email: string;
-  avatar?: string;
+  nickname: string;
+  email?: string;
+  phone?: string;
+  image?: string;
+  access?: string;
 }
 
-const User = createModel<IUser>("User", {
+const User = createModel<IUser>('User', {
   name: { type: String, required: true },
-  email: { type: String, required: true },
-  avatar: String,
+  nickname: { type: String, required: true },
+  access: { type: String, default: 'user' },
+  email: String,
+  phone: String,
+  image: String,
 });
 
 export async function createUser(user: IUser) {
