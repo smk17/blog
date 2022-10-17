@@ -2,11 +2,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { message } from 'antd';
+import { useRef } from 'react';
 import { ActionType, ProTable, ModalForm, ProFormText, ProFormSelect } from 'procomponents';
 import { PlusOutlined } from '@ant-design/icons';
 import { request } from 'utils';
 import omit from 'lodash/omit';
-import { useRef } from 'react';
 
 export { getServerSideProps } from 'pages/admin/utils';
 
@@ -85,6 +85,7 @@ const Home: NextPage = () => {
           {
             title: '引用数',
             dataIndex: 'count',
+            hideInSearch: true,
             width: 120,
           },
           {

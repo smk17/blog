@@ -7,7 +7,7 @@ interface IBlog {
   content?: string;
   status?: string;
   type?: string;
-  tags?: Array<{ value: string; text: string }>;
+  tags?: Array<{ value: string; label: string }>;
 }
 
 export type BlogInfo = IBlog & IModel;
