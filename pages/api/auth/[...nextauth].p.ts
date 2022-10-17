@@ -17,11 +17,24 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
-    async jwt({ token, account, profile }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
-      if (account) {
-        console.log('jwt', token, account, profile);
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log('signIn', user, account, profile, email, credentials);
+
+      return true;
+    },
+    async redirect({ url, baseUrl }) {
+      console.log('redirect', url, baseUrl);
+      return baseUrl;
+    },
+    async session({ session, user, token }) {
+      console.log('session', session, user, token);
+      if (user?.access && session?.user) {
+        session.user.access = user.access;
       }
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      console.log('jwt', token, user, account, profile, isNewUser);
       return token;
     },
   },

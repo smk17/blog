@@ -21,7 +21,7 @@ specifiers:
   classnames: ^2.3.2
   commitizen: ^4.2.5
   cz-conventional-changelog: ^3.3.0
-  cz-customizable: ^7.0.0
+  cz-customizable: ^6.3.0
   daisyui: ^2.31.0
   eslint: 8.24.0
   eslint-config-next: 12.3.1
@@ -97,7 +97,7 @@ devDependencies:
   autoprefixer: 10.4.12_postcss@8.4.16
   commitizen: 4.2.5
   cz-conventional-changelog: 3.3.0
-  cz-customizable: 7.0.0
+  cz-customizable: 6.9.2
   eslint: 8.24.0
   eslint-config-next: 12.3.1_7ilbxdl5iguzcjriqqcg2m5cku
   lodash: 4.17.21
@@ -3589,8 +3589,8 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /cz-customizable/7.0.0:
-    resolution: {integrity: sha512-pQKkGSm+8SY9VY/yeJqDOla1MjrGaG7WG4EYLLEV4VNctGO7WdzdGtWEr2ydKSkrpmTs7f8fmBksg/FaTrUAyw==}
+  /cz-customizable/6.9.2:
+    resolution: {integrity: sha512-33Y0eHAp40sb7K346Shm07X+ZIckPKV8pBHUH5Lh2tI4fi0mjHkrYDrwQyJMS8095Ri+H+xkxOmblzQ64wT/Fg==}
     hasBin: true
     dependencies:
       editor: 1.0.0
@@ -6387,7 +6387,7 @@ packages:
     dev: true
 
   /mute-stream/0.0.7:
-    resolution: {integrity: sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=}
+    resolution: {integrity: sha512-r65nCZhrbXXb6dXOACihYApHw2Q6pV0M3V0PSxd74N0+D8nzAdEAITq2oAjA1jVnKI+tGvEBUpqiMh0+rW6zDQ==}
     dev: true
 
   /mute-stream/0.0.8:

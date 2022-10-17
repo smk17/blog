@@ -23,7 +23,7 @@ function MyApp({
   pageProps: { session, ...pageProps },
 }: AppProps<Pick<SessionProviderProps, 'session'>>) {
   return (
-    <SessionProvider refetchInterval={10} session={session}>
+    <SessionProvider session={session}>
       <Layout>
         <Head>
           <title>{process.env.title}</title>
