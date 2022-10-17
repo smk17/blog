@@ -7,11 +7,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <meta
-          name="description"
-          content="I am a web developer helping make the world a better place through JavaScript."
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <title>工作台 - {process.env.title}</title>
+        <meta name="description" content="工作台" />
       </Head>
     </>
   );
