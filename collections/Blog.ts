@@ -1,4 +1,5 @@
 import { IModel, createModel } from './client';
+import { createTag } from './Tag';
 
 interface IBlog {
   slug: string;
@@ -7,7 +8,7 @@ interface IBlog {
   content?: string;
   status?: string;
   type?: string;
-  tags?: Array<{ value: string; label: string }>;
+  tags?: Array<{ value: string; label: string; key?: string }>;
 }
 
 export type BlogInfo = IBlog & IModel;
@@ -42,7 +43,15 @@ export async function updateBlog(id: string, blog: IBlog, checkSlug = false) {
       throw Error(`${blog.slug} 已存在`);
     }
   }
-
+  const tags = blog.tags || [];
+  for (let inx = 0; inx < tags.length; inx++) {
+    if (!tags[inx].label) {
+      const { value } = tags[inx];
+      const tag = await createTag({ slug: value, name: value });
+      tags[inx] = { label: tag.name, value: tag._id.toString() };
+    }
+    delete tags[inx]['key'];
+  }
   const doc = await Blog.findByIdAndUpdate(id, blog);
   if (doc === null) {
     throw Error(`Blog 不存在`);
@@ -55,6 +64,16 @@ export async function createBlog(blog: IBlog) {
   if (ret !== null) {
     throw Error(`${blog.slug} 已存在`);
   }
+  const tags = blog.tags || [];
+  for (let inx = 0; inx < tags.length; inx++) {
+    if (!tags[inx].label) {
+      const { value } = tags[inx];
+      const tag = await createTag({ slug: value, name: value });
+      tags[inx] = { label: tag.name, value: tag._id.toString() };
+    }
+    delete tags[inx]['key'];
+  }
+
   const doc = new Blog(blog);
   await doc.save();
   return doc;

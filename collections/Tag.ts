@@ -3,7 +3,7 @@ import { createModel } from './client';
 interface ITag {
   slug: string;
   name: string;
-  type: string;
+  type?: string;
   count?: number;
 }
 
