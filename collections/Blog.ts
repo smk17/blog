@@ -21,7 +21,7 @@ export const Blog = createModel<IBlog>('Blog', {
   title: { type: String, required: true },
   content: { type: String, default: '' },
   type: { type: String, default: 'blog' },
-  tags: { type: Schema.Types.Array, default: [] },
+  tags: [{ value: String, label: String }],
   cover: String,
   status: String,
 });

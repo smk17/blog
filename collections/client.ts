@@ -30,7 +30,7 @@ function descriptor(descriptor: (...args: any) => Promise<any>) {
   return async function (this: any, ...args: any) {
     await dbConnect();
     const result = await descriptor.apply(this, args);
-    // await connection.close();
+    await connection.close();
     return result;
   };
 }
