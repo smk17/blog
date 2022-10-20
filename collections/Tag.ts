@@ -7,7 +7,7 @@ interface ITag {
   count?: number;
 }
 
-const Tag = createModel<ITag>('Tag', {
+export const Tag = createModel<ITag>('Tag', {
   slug: { type: String, required: true },
   name: { type: String, required: true },
   type: { type: String, default: 'tag' },

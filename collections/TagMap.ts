@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongodb';
+import { Schema } from 'mongoose';
 import { createModel } from './client';
 
 interface ITagMap {
@@ -7,6 +8,6 @@ interface ITagMap {
 }
 
 export const TagMap = createModel<ITagMap>('TagMap', {
-  tagId: { type: ObjectId, required: true },
-  blogId: { type: ObjectId, required: true },
+  tagId: { type: Schema.Types.ObjectId, ref: 'Tag', required: true },
+  blogId: { type: Schema.Types.ObjectId, ref: 'Blog', required: true },
 });

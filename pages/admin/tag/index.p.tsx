@@ -55,7 +55,7 @@ const Home: NextPage = () => {
       </Head>
       <ProTable
         cardBordered
-        rowKey="id"
+        rowKey="_id"
         actionRef={actionRef}
         request={(params = {}) => request.get('/api/tag', { params })}
         columns={[
