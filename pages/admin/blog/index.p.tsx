@@ -1,15 +1,77 @@
 import type { NextPage } from 'next';
+import { useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Modal, message } from 'antd';
-import { useRef } from 'react';
-import { ProTable, ModalForm, ProFormText, ProFormSelect } from 'procomponents';
-import type { ActionType, ProFormInstance } from 'procomponents';
-import { PlusOutlined } from '@ant-design/icons';
+import Image from 'next/image';
 import { request } from 'utils';
 import { useRouter } from 'next/router';
+import { IResource } from 'collections';
+import { Modal, Form, Upload, message } from 'antd';
+import type { UploadChangeParam } from 'antd/es/upload';
+import { useControllableValue, useBoolean } from 'ahooks';
+import type { ActionType, ProFormInstance } from 'procomponents';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import { ProTable, ModalForm, ProFormText, ProFormSelect } from 'procomponents';
 
 export { getServerSideProps } from 'pages/admin/utils';
+
+interface CoverProps {
+  value?: IResource;
+  onChange?(value: IResource): void;
+}
+
+const beforeUpload = (file: RcFile) => {
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+  if (!isJpgOrPng) {
+    message.error('您只能上传 JPG/PNG 文件！');
+  }
+  const isLt2M = file.size / 1024 / 1024 < 1;
+  if (!isLt2M) {
+    message.error('图片必须小于 1MB!');
+  }
+  return isJpgOrPng && isLt2M;
+};
+
+const Cover = (props: CoverProps) => {
+  const [loading, { set }] = useBoolean(false);
+  const [value, onChange] = useControllableValue<IResource>(props);
+
+  const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+    if (info.file.status === 'uploading') {
+      set(true);
+      return;
+    }
+    if (info.file.status === 'done') {
+      set(false);
+      console.log('handleChange', info.file.response.data);
+      onChange(info.file.response.data);
+    }
+  };
+
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>上传封面</div>
+    </div>
+  );
+  return (
+    <Upload
+      listType="picture-card"
+      className="avatar-uploader"
+      showUploadList={false}
+      action="/api/wx/files/upload"
+      beforeUpload={beforeUpload}
+      onChange={handleChange}
+    >
+      {value?.url ? (
+        <Image width={value.width} height={value.height} src={value.url} alt="cover" />
+      ) : (
+        uploadButton
+      )}
+    </Upload>
+  );
+};
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -32,6 +94,9 @@ const Home: NextPage = () => {
           placeholder="请输入短链"
           rules={[{ required: true, message: '请输入短链' }]}
         />
+        <Form.Item label="封面" name="cover">
+          <Cover />
+        </Form.Item>
         <ProFormSelect
           request={(params = {}) => request.get('/api/tag/select', { params })}
           name="tags"
@@ -83,7 +148,10 @@ const Home: NextPage = () => {
                 trigger={<a>修改</a>}
                 initialValues={record}
                 onFinish={async (values) => {
-                  await request.post(`/api/blog/${record._id}`, { data: values });
+                  const { cover, ...params } = values;
+                  await request.post(`/api/blog/${record._id}`, {
+                    data: { ...params, cover: cover?.id },
+                  });
                   message.success('更新成功');
                   actionRef.current?.reload();
                   return true;
@@ -111,7 +179,8 @@ const Home: NextPage = () => {
               </a>
             }
             onFinish={async (values) => {
-              const ret = await request.put('/api/blog', { data: values });
+              const { cover, ...params } = values;
+              const ret = await request.put('/api/blog', { data: { ...params, cover: cover?.id } });
               console.log('/api/blog', ret);
               Modal.confirm({
                 title: '创建成功',

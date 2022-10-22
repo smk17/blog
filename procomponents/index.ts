@@ -21,6 +21,9 @@ export const ProFormText = dynamic(() => import('./ProFormText'), {
 export const ProFormSelect = dynamic(() => import('./ProFormSelect'), {
   ssr: false,
 });
+export const ProFormUploadButton = dynamic(() => import('./ProFormUploadButton'), {
+  ssr: false,
+});
 
 export type { ProFormInstance } from '@ant-design/pro-form';
 export type { ActionType } from '@ant-design/pro-table';
