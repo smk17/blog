@@ -35,3 +35,20 @@ export async function getResourceById(id: string) {
   }
   return doc;
 }
+
+export async function findResource({ current, pageSize, ...resource }: Pagination.Params) {
+  const resources = await Resource.find(resource)
+    .skip(current * pageSize)
+    .limit(pageSize)
+    .sort({ _id: -1 })
+    .exec();
+
+  return resources;
+}
+
+export async function findResourceAndCount(params: Pagination.Params) {
+  const total = await Resource.find(params.blog).count().exec();
+  const blogs = await findResource(params);
+
+  return { success: true, total, data: blogs };
+}

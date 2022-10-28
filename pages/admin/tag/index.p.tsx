@@ -89,6 +89,22 @@ const Home: NextPage = () => {
             width: 120,
           },
           {
+            title: '创建时间',
+            dataIndex: 'createdAt',
+            width: 160,
+            valueType: 'date',
+            sorter: true,
+            hideInSearch: true,
+          },
+          {
+            title: '更新时间',
+            dataIndex: 'updatedAt',
+            width: 160,
+            valueType: 'date',
+            sorter: true,
+            hideInSearch: true,
+          },
+          {
             title: '操作',
             width: 80,
             valueType: 'option',
