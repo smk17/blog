@@ -162,10 +162,10 @@ const Home: NextPage = () => {
                 title="修改文章"
                 autoFocusFirstInput
                 trigger={<a>修改</a>}
-                initialValues={record}
+                request={() => request.get(`/api/blog/${record._id}`)}
                 onFinish={async (values) => {
                   const { cover, ...params } = values;
-                  await request.post(`/api/blog/${record._id}`, {
+                  await request.put(`/api/blog/${record._id}`, {
                     data: { ...params, cover: cover?.id },
                   });
                   message.success('更新成功');
@@ -196,7 +196,9 @@ const Home: NextPage = () => {
             }
             onFinish={async (values) => {
               const { cover, ...params } = values;
-              const ret = await request.put('/api/blog', { data: { ...params, cover: cover?.id } });
+              const ret = await request.post('/api/blog', {
+                data: { ...params, cover: cover?.id },
+              });
               console.log('/api/blog', ret);
               Modal.confirm({
                 title: '创建成功',

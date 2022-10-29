@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return;
     }
 
-    if (req.method === 'POST') {
+    if (req.method === 'PUT') {
       const { slug, name, type } = req.body;
 
       await descriptor(updateTag)(id, { slug, name, type });

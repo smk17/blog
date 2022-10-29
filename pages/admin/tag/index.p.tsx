@@ -115,9 +115,9 @@ const Home: NextPage = () => {
                 title="编辑标签"
                 autoFocusFirstInput
                 trigger={<a>编辑</a>}
-                initialValues={record}
+                request={() => request.get(`/api/tag/${record._id}`)}
                 onFinish={async (values) => {
-                  await request.post(`/api/tag/${record._id}`, { data: values });
+                  await request.put(`/api/tag/${record._id}`, { data: values });
                   message.success('更新成功');
                   actionRef.current?.reload();
                   return true;
@@ -141,7 +141,7 @@ const Home: NextPage = () => {
               </a>
             }
             onFinish={async (values) => {
-              await request.put('/api/tag', { data: values });
+              await request.post('/api/tag', { data: values });
               message.success('创建成功');
               actionRef.current?.reload();
               return true;

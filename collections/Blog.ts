@@ -52,14 +52,10 @@ export async function updateBlog(
     }
   }
   const doc = await getBlogById(id);
-  for (const key in blog) {
-    if (Object.prototype.hasOwnProperty.call(blog, key)) {
-      // @ts-ignore
-      doc[key] = blog[key as keyof IBlog];
-    }
-  }
-  const oldTags = doc.tags || [];
+
+  // 初始化 tags
   const tags = blog.tags || [];
+  const oldTags = doc.tags || [];
   const oldTagIds = oldTags.map((t) => t.value);
   const tagIds = tags.map((t) => t.value);
   const interTags = tags.filter((v) => oldTagIds.includes(v.value));
@@ -84,10 +80,22 @@ export async function updateBlog(
     }
     delete newTags[inx]['key'];
   }
-  doc.tags = [...interTags, ...newTags];
+
+  // 初始化 更新 所有属性
+  for (const key in blog) {
+    if (Object.prototype.hasOwnProperty.call(blog, key)) {
+      // @ts-ignore
+      doc[key] = blog[key as keyof IBlog];
+    }
+  }
+
+  // 更新 cover
   if (blog.cover) {
     doc.cover = (await getResourceById(blog.cover))._id;
   }
+
+  // 更新 tags
+  doc.tags = [...interTags, ...newTags];
   await Promise.all(tagMap.map((tagId) => new TagMap({ tagId, blogId: doc._id }).save()));
   await Promise.all(
     delTags.map(async (tag) => {
@@ -105,6 +113,16 @@ export async function updateBlog(
 
   await doc.save();
   return doc;
+}
+
+export async function updateBlogContent(id: string, content: string) {
+  console.log('updateBlogContent', content);
+  
+  const doc = await Blog.findByIdAndUpdate(id, { content });
+  if (doc == null) {
+    throw Error(`Blog 不存在`);
+  }
+  return;
 }
 
 export async function createBlog(blog: Omit<IBlog, 'cover'> & { cover?: string }) {

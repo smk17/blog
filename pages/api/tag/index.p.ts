@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json(ret);
       return;
     }
-    if (req.method === 'PUT') {
+    if (req.method === 'POST') {
       const { slug, name, type } = req.body;
       const blog = await descriptor(createTag)({ slug, name, type });
       res.status(200).json({ id: blog.id });

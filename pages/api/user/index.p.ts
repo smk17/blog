@@ -6,9 +6,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "PUT") {
-    const { name, email, avatar } = req.body;
-    const user = await descriptor(createUser)({ name, email, avatar });
+  if (req.method === "POST") {
+    const { name, email, image } = req.body;
+    const user = await descriptor(createUser)({ name, email, image });
     res.status(200).json({ id: user.id });
     return;
   }

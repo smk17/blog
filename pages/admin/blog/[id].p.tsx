@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       <ProForm
         request={() => request.get(`/api/blog/${id}`)}
         onFinish={async (data) => {
-          await request.post(`/api/blog/${id}`, { data });
+          await request.patch(`/api/blog/${id}`, { data });
           message.success('更新成功');
         }}
       >
