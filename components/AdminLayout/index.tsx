@@ -1,9 +1,10 @@
-import { LoadingOutlined, LogoutOutlined, QuestionCircleFilled } from '@ant-design/icons';
+import Link from 'next/link';
 import { useRequest } from 'ahooks';
+import { useRouter } from 'next/router';
 import { Spin, Button, Result } from 'antd';
 import { signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
 import { ProLayout, PageContainer } from 'procomponents';
+import { LoadingOutlined, LogoutOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { defaultProps } from './defaultProps';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const AdminLayout = ({ children }: Props) => {
+  const router = useRouter();
   const { data: session, status } = useSession();
   const signOutReq = useRequest(() => signOut(), { manual: true });
   const loading = status === 'loading';
@@ -19,22 +21,26 @@ export const AdminLayout = ({ children }: Props) => {
     <Spin spinning={loading}>
       <div className="w-screen h-screen">
         {session?.user?.access ? (
-          <ProLayout
-            {...defaultProps}
-            avatarProps={{
-              src: session?.user?.image,
-              title: session?.user?.name,
-              size: 'small',
-            }}
-            actionsRender={() => [
-              <QuestionCircleFilled key="QuestionCircleFilled" />,
-              <div key="LogoutOutlined" onClick={signOutReq.run} title="登出">
-                {signOutReq.loading ? <LoadingOutlined /> : <LogoutOutlined />}
-              </div>,
-            ]}
-          >
-            <PageContainer breadcrumbRender={false}>{children}</PageContainer>
-          </ProLayout>
+          router.route.indexOf('/admin/blog/') === 0 ? (
+            children
+          ) : (
+            <ProLayout
+              {...defaultProps}
+              avatarProps={{
+                src: session?.user?.image,
+                title: session?.user?.name,
+                size: 'small',
+              }}
+              actionsRender={() => [
+                <QuestionCircleFilled key="QuestionCircleFilled" />,
+                <div key="LogoutOutlined" onClick={signOutReq.run} title="登出">
+                  {signOutReq.loading ? <LoadingOutlined /> : <LogoutOutlined />}
+                </div>,
+              ]}
+            >
+              <PageContainer breadcrumbRender={false}>{children}</PageContainer>
+            </ProLayout>
+          )
         ) : (
           <Result
             status="403"

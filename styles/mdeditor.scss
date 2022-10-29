@@ -1,0 +1,27 @@
+@import '../components/MdEditor/Editor.css';
+@import '../components/MdEditor/component/Dialog/VersionDialog.css';
+@import '../components/MdEditor/component/LocalHistory/localHistory.css';
+@import '../components/MdEditor/component/MenuLeft/Theme.css';
+@import '../components/MdEditor/component/MenuLeft/CodeTheme.css';
+@import '../components/MdEditor/component/MenuLeft/common.css';
+@import '../components/MdEditor/component/SearchBox/SearchBox.css';
+@import '../components/MdEditor/component/Sidebar/Juejin.css';
+@import '../components/MdEditor/component/Sidebar/PreviewType.css';
+@import '../components/MdEditor/component/Sidebar/Wechat.css';
+@import '../components/MdEditor/component/Sidebar/Zhihu.css';
+@import '../components/MdEditor/icon/index.css';
+@import '../components/MdEditor/layout/EditorMenu.css';
+@import '../components/MdEditor/layout/Footer.css';
+@import '../components/MdEditor/layout/Navbar.css';
+@import '../components/MdEditor/layout/Sidebar.css';
+@import '../components/MdEditor/utils/mdMirror.css';
+@import '../components/MdEditor/utils/styleMirror.css';
+
+.CodeMirror {
+  font-family: 'source-code-pro', Menlo, 'Courier New', Consolas, monospace;
+  font-size: 14px;
+  z-index: 0;
+  border-radius: 5px;
+  height: auto;
+  background: transparent;
+}

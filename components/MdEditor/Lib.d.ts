@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import * as React from "react";
 
-export interface MdEditorProps {
+// declare const PreviewTypes: ["pc", "mobile"];
+
+// export declare type PreviewType = (typeof PreviewTypes)[number];
+
+export interface MarkdownNiceProps {
   /**
    * 默认标题
    */
@@ -42,7 +46,7 @@ export interface MdEditorProps {
    */
   token?: string;
   /**
-   * 是否启用用户提供的图床, 内部为图床的URL以及要显示的图床名称。
+   * 是否启用用户提供的图床, 内部为图床的URL以及要显示的图床名称。
    */
   useImageHosting?: {
     url: string;
@@ -55,4 +59,6 @@ export interface MdEditorProps {
   };
 }
 
-export class MdEditor extends Component<MdEditorProps, any> {}
+declare class MarkdownNice extends React.Component<MarkdownNiceProps, any> {}
+
+export default MarkdownNice;

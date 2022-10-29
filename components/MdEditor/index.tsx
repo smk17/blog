@@ -1,26 +1,30 @@
-import dynamic from "next/dynamic";
-import { parseMarkdown } from "utils";
+import dynamic from 'next/dynamic';
 
-export const Editor = dynamic(() => import("react-markdown-editor-lite"), {
+export const Editor = dynamic(() => import('./Lib'), {
   ssr: false,
 });
 
 interface EditorProps {
-  id?: string;
-  defaultValue?: string;
-  value?: string;
-  style?: React.CSSProperties;
-  autoFocus?: boolean;
-  placeholder?: string;
-  readOnly?: boolean;
-  className?: string;
-  onChange?: (value?: string) => void;
+  /**
+   * 默认标题
+   */
+  defaultTitle?: string;
+  // /**
+  //  * 右侧预览类型 pc 或者 mobile
+  //  */
+  // previewType?: PreviewType;
+  /**
+   * 默认编辑器内容
+   */
+  defaultText?: string;
+  /**
+   * 编辑器内容监听函数
+   */
+  onTextChange?: (text: string) => void;
 }
 
 export const MdEditor = (props: EditorProps) => (
-  <Editor
-    {...props}
-    onChange={({ text }) => props.onChange?.(text)}
-    renderHTML={parseMarkdown}
-  />
+  <div className="w-screen h-screen overflow-hidden">
+    <Editor {...props} />;
+  </div>
 );

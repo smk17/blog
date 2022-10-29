@@ -5,7 +5,8 @@ import { AdminLayout } from 'components';
 import { SessionProvider, SessionProviderProps } from 'next-auth/react';
 
 import 'styles/globals.css';
-import 'styles/markdown/index.scss';
+import 'styles/mdeditor.scss';
+import 'codemirror/lib/codemirror.css';
 import 'antd/dist/antd.variable.min.css';
 
 interface LayoutProps {

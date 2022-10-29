@@ -1,19 +1,30 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Form, Select, message } from 'antd';
+import { message } from 'antd';
 import { useRequest } from 'ahooks';
 import { MdEditor } from 'components';
 import { request } from 'utils';
 import { useRouter } from 'next/router';
-import { ProForm, ProFormText } from 'procomponents';
-
-import 'react-markdown-editor-lite/lib/index.css';
+import { useState } from 'react';
 
 export { getServerSideProps } from 'pages/admin/utils';
 
 const Home: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
+  const [text, onTextChange] = useState('');
+  const { loading, data } = useRequest(() => request.get(`/api/blog/${id}`));
+  const req = useRequest(
+    (content: string) => request.patch(`/api/blog/${id}`, { data: { content } }),
+    {
+      manual: true,
+      onSuccess() {
+        message.success('更新成功');
+      },
+    },
+  );
+
+  if (loading) return null;
 
   return (
     <>
@@ -22,17 +33,7 @@ const Home: NextPage = () => {
         <meta name="description" content="编辑文章" />
       </Head>
 
-      <ProForm
-        request={() => request.get(`/api/blog/${id}`)}
-        onFinish={async (data) => {
-          await request.patch(`/api/blog/${id}`, { data });
-          message.success('更新成功');
-        }}
-      >
-        <Form.Item name="content" label="正文">
-          <MdEditor className="min-h-[480px]" />
-        </Form.Item>
-      </ProForm>
+      <MdEditor defaultTitle={data.title} defaultText={data.content} onTextChange={onTextChange} />
     </>
   );
 };
