@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {observer, inject} from "mobx-react";
-import {Input, Select, Form} from "antd";
+import { Form } from '@ant-design/compatible';
+import { Input, Select } from "antd";
 import {QINIUOSS_IMAGE_HOSTING} from "../../utils/constant";
 
 const {Option} = Select;

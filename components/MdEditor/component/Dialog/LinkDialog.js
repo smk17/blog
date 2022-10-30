@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {observer, inject} from "mobx-react";
-import {Modal, Input, Form} from "antd";
+import { Form } from '@ant-design/compatible';
+import { Modal, Input } from "antd";
 
 @inject("dialog")
 @inject("content")

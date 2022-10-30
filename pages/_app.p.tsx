@@ -8,6 +8,7 @@ import 'styles/globals.css';
 import 'styles/mdeditor.scss';
 import 'codemirror/lib/codemirror.css';
 import 'antd/dist/antd.variable.min.css';
+import '@ant-design/compatible/assets/index.css';
 
 interface LayoutProps {
   children?: React.ReactNode;

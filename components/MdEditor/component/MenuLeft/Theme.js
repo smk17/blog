@@ -8,19 +8,16 @@ import {
   MARKDOWN_THEME_ID,
   THEME_LIST,
   STYLE,
-  THEME_API,
-  TOKEN,
 } from '../../utils/constant';
 import { replaceStyle } from '../../utils/helper';
 import TEMPLATE from '../../template/index';
-import axios from 'axios';
 
 @inject('content')
 @inject('navbar')
 @inject('view')
 @observer
 class Theme extends React.Component {
-  changeTemplate = (item) => {
+  changeTemplate = item => {
     const index = parseInt(item.key, 10);
     const { themeId, css } = this.props.content.themeList[index];
     this.props.navbar.setTemplateNum(index);
@@ -46,43 +43,8 @@ class Theme extends React.Component {
   };
 
   componentDidMount = async () => {
-    let themeList = null;
-    try {
-      const { token } = this.props;
-      let response;
-      let remoteThemelist;
-      if (token) {
-        // 如果处于登录状态，则读取订阅的主题
-        response = await axios.get(`https://api.mdnice.com/themes/editor`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.data.success) {
-          throw new Error();
-        }
-        remoteThemelist = response.data.data;
-      } else {
-        // 否则默认主题
-        response = await axios.get(THEME_API());
-        if (!response.data.success) {
-          throw new Error();
-        }
-        remoteThemelist = response.data.data.themeList;
-      }
-
-      themeList = [
-        { themeId: 'normal', name: '默认主题', css: TEMPLATE.normal },
-        ...remoteThemelist,
-        { themeId: 'custom', name: '自定义', css: TEMPLATE.custom },
-      ];
-      this.props.content.setThemeList(themeList);
-    } catch (err) {
-      console.error('读取最新主题信息错误');
-      // 降级方案：使用本地的值
-      themeList = JSON.parse(window.localStorage.getItem(THEME_LIST));
-      this.props.content.setThemeList(themeList);
-    }
+    const themeList = JSON.parse(window.localStorage.getItem(THEME_LIST));
+    this.props.content.setThemeList(themeList);
 
     const templateNum = parseInt(window.localStorage.getItem(TEMPLATE_NUM), 10);
 

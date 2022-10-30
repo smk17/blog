@@ -18,6 +18,7 @@
     "fs": false
   },
   "dependencies": {
+    "@ant-design/compatible": "^1.0.0",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.3.14",
     "@ant-design/pro-form": "^2.2.3",

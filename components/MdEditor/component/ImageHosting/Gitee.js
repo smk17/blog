@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {observer, inject} from "mobx-react";
-import {Input, Form} from "antd";
+import { Form } from '@ant-design/compatible';
+import { Input } from "antd";
 import {GITEE_IMAGE_HOSTING} from "../../utils/constant";
 
 const formItemLayout = {
