@@ -1,2 +1,2 @@
-export * from "./MdEditor";
+export * from "./MarkdownEditor";
 export * from "./AdminLayout";

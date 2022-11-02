@@ -20,6 +20,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "next-global.d.ts", "shims.next-auth.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "next-global.d.ts",
+    "shims.next-auth.d.ts",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }

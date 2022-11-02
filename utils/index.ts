@@ -1,6 +1,6 @@
-export * from "./request";
-export * from "./render-to-body";
-export * from "./parse-markdown";
+export * from './request';
+export * from './render-to-body';
+export * from './parse-markdown';
 
 export function errorToJSON(error: Error | unknown) {
   return {
@@ -11,3 +11,16 @@ export function errorToJSON(error: Error | unknown) {
 export function serializable<T>(o: T) {
   return JSON.parse(JSON.stringify(o));
 }
+
+export const isPC = () => {
+  var userAgentInfo = navigator.userAgent;
+  var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+  var flag = true;
+  for (var v = 0; v < Agents.length; v++) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = false;
+      break;
+    }
+  }
+  return flag;
+};
