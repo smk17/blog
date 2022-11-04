@@ -9,7 +9,7 @@ import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
 import { markdownParser } from './utils/helper';
-import { basic, githubLight } from './theme';
+import { basic, githubLight, defaultContent } from './theme';
 import { THEME_ID } from './constant';
 
 export interface MarkdownEditorProps {
@@ -38,6 +38,7 @@ function MarkdownEditor(props: MarkdownEditorProps) {
   useMount(() => {
     // 初始化整体主题
     replaceStyle(THEME_ID, basic);
+    if (!value) onChange(defaultContent);
   });
 
   const handleScroll = () => {
