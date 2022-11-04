@@ -34,6 +34,7 @@
     "@sitdown/wechat": "^1.1.4",
     "@sitdown/zhihu": "^1.1.2",
     "@types/mongodb": "^4.0.7",
+    "@uiw/codemirror-extensions-events": "^4.12.4",
     "@uiw/codemirror-themes": "^4.12.4",
     "@uiw/codemirror-themes-all": "^4.12.4",
     "@uiw/react-codemirror": "^4.12.4",

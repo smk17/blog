@@ -25,6 +25,7 @@ specifiers:
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
   '@types/request': ^2.48.8
+  '@uiw/codemirror-extensions-events': ^4.12.4
   '@uiw/codemirror-themes': ^4.12.4
   '@uiw/codemirror-themes-all': ^4.12.4
   '@uiw/react-codemirror': ^4.12.4
@@ -117,6 +118,7 @@ dependencies:
   '@sitdown/wechat': 1.1.4
   '@sitdown/zhihu': 1.1.2
   '@types/mongodb': 4.0.7
+  '@uiw/codemirror-extensions-events': 4.12.4_@codemirror+view@6.4.0
   '@uiw/codemirror-themes': 4.12.4
   '@uiw/codemirror-themes-all': 4.12.4
   '@uiw/react-codemirror': 4.12.4_niesoovdq4acso2wlrrtxtwjw4
@@ -3867,6 +3869,14 @@ packages:
       '@codemirror/lint': 6.0.0
       '@codemirror/search': 6.2.2
       '@codemirror/state': 6.1.2
+      '@codemirror/view': 6.4.0
+    dev: false
+
+  /@uiw/codemirror-extensions-events/4.12.4_@codemirror+view@6.4.0:
+    resolution: {integrity: sha512-wbALZgg+NvTwwbeo3eHA4DVQCNGn88aYydrZe9w8ddFtZOsPx3j5hvPqETcEXQybgbpjoTdAKH/oNFD07MTgKQ==}
+    peerDependencies:
+      '@codemirror/view': '>=6.0.0'
+    dependencies:
       '@codemirror/view': 6.4.0
     dev: false
 

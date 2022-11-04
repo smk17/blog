@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Head from 'next/head';
 import { EditorView } from 'codemirror';
 import { Result } from 'antd';
@@ -7,6 +7,7 @@ import { useControllableValue, useMount } from 'ahooks';
 import { SmileOutlined } from '@ant-design/icons';
 import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
+import * as events from '@uiw/codemirror-extensions-events';
 import { languages } from '@codemirror/language-data';
 import { markdownParser } from './utils/helper';
 import { basic, githubLight, defaultContent } from './theme';
@@ -28,12 +29,30 @@ export interface MarkdownEditorProps {
 }
 
 function MarkdownEditor(props: MarkdownEditorProps) {
-  const indexRef = useRef<number>();
-  const markdownEditor = useRef<ReactCodeMirrorRef>(null);
-  const previewWrap = useRef<HTMLElement>(null);
-  const previewContainer = useRef<HTMLDivElement>(null);
+  const preview = useRef<HTMLDivElement>(null);
+  const codeMirror = useRef<ReactCodeMirrorRef>(null);
+  const active = useRef<'editor' | 'preview'>('editor');
   const [value, onChange] = useControllableValue<string>(props);
   const parseHtml = useMemo(() => markdownParser.render(value), [value]);
+
+  const mouseoverHandle = () => (active.current = 'preview');
+  const mouseleaveHandle = () => (active.current = 'editor');
+  const previewScrollHandle = (event: Event) => {
+    const target = event.target as HTMLDivElement;
+    const percent = target.scrollTop / target.scrollHeight;
+    if (active.current === 'editor' && preview.current) {
+      const previewHeihgt = preview.current?.scrollHeight || 0;
+      preview.current!.scrollTop = previewHeihgt * percent;
+    } else if (codeMirror.current && codeMirror.current.view) {
+      const editorScrollDom = codeMirror.current.view.scrollDOM;
+      const editorScrollHeihgt = codeMirror.current.view.scrollDOM.scrollHeight || 0;
+      editorScrollDom.scrollTop = editorScrollHeihgt * percent;
+    }
+  };
+
+  const scrollExtensions = events.scroll({
+    scroll: previewScrollHandle,
+  });
 
   useMount(() => {
     // 初始化整体主题
@@ -41,26 +60,21 @@ function MarkdownEditor(props: MarkdownEditorProps) {
     if (!value) onChange(defaultContent);
   });
 
-  const handleScroll = () => {
-    // if (markdownEditor.current) {
-    //   const cmData = markdownEditor.current?.view?.get;
-    //   const editorToTop = cmData.top;
-    //   const editorScrollHeight = cmData.height - cmData.clientHeight;
-    //   this.scale =
-    //     (this.previewWrap.offsetHeight - this.previewContainer.offsetHeight + 55) /
-    //     editorScrollHeight;
-    //   if (this.index === 1) {
-    //     this.previewContainer.scrollTop = editorToTop * this.scale;
-    //   } else {
-    //     this.editorTop = this.previewContainer.scrollTop / this.scale;
-    //     markdownEditor.scrollTo(null, this.editorTop);
-    //   }
-    // }
-  };
-
-  const setCurrentIndex = (inx: number) => {
-    indexRef.current = inx;
-  };
+  useEffect(() => {
+    const $preview = preview.current;
+    if ($preview) {
+      $preview.addEventListener('mouseover', mouseoverHandle, false);
+      $preview.addEventListener('mouseleave', mouseleaveHandle, false);
+      $preview.addEventListener('scroll', previewScrollHandle, false);
+    }
+    return () => {
+      if ($preview) {
+        $preview.removeEventListener('mouseover', mouseoverHandle);
+        $preview.removeEventListener('mouseleave', mouseoverHandle);
+        $preview.addEventListener('mouseleave', previewScrollHandle, false);
+      }
+    };
+  }, []);
   const render = () => {
     if (isPC())
       return (
@@ -71,31 +85,27 @@ function MarkdownEditor(props: MarkdownEditorProps) {
             </div>
           </div>
           <div className="flex w-full h-[calc(100vh-3.5rem)]">
-            <div className="flex-1 w-1/3 relative" onMouseOver={() => setCurrentIndex(1)}>
+            <div className="flex-1 w-1/3 relative">
               <CodeMirror
-                ref={markdownEditor}
+                ref={codeMirror}
                 value={value}
                 theme={githubLight}
                 width={'100%'}
                 basicSetup={{ lineNumbers: false, foldGutter: false }}
                 className="CodeMirror w-full h-full p-5 overflow-x-hidden overflow-y-auto relative bg-neutral-100"
                 extensions={[
+                  scrollExtensions,
                   EditorView.lineWrapping,
                   markdown({ base: markdownLanguage, codeLanguages: languages }),
                 ]}
                 onChange={onChange}
-                onScroll={handleScroll}
               />
             </div>
 
-            <div
-              className="flex-1 w-1/3 p-5 relative flex justify-center"
-              onMouseOver={() => setCurrentIndex(2)}
-            >
+            <div className="flex-1 w-1/3 p-5 relative flex justify-center">
               <div
                 className="overflow-y-auto py-6 px-5 h-full w-[375px] shadow-[0_0_60px_rgb(0,0,0,0.1)]"
-                onScroll={handleScroll}
-                ref={previewContainer}
+                ref={preview}
               >
                 <section
                   id={'nice'}
@@ -104,7 +114,6 @@ function MarkdownEditor(props: MarkdownEditorProps) {
                   dangerouslySetInnerHTML={{
                     __html: parseHtml,
                   }}
-                  ref={previewWrap}
                 />
               </div>
             </div>
