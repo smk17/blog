@@ -8,13 +8,13 @@ export default `![](/ex/logo.svg)
 
 - 支持自定义样式的 Markdown 编辑器
 - 支持微信公众号、知乎和稀土掘金
-- 欢迎扫码回复「排版」加入推文群
+- 欢迎扫码回复「排版」加入用户群
 
-![](/ex/pic/cd3ca20c-896f-4cfc-9bdd-c4c58e69ba26.jpg)
+![](/ex/wechat.jpg)
 
 ## 2 主题
 
-**https://product.mdnice.com/themes/**
+**https://preview.mdnice.com/themes/**
 
 欢迎提交主题，提供更多文章示例~~
 
@@ -69,6 +69,12 @@ _这个是斜体_
 
 **_这个是粗体加斜体_**
 
+注：由于 commonmark 标准，可能会导致加粗与想象不一致，如下
+
+**今天天气好晴朗，**处处好风光。
+
+这个是正常现象，请参考[加粗 Issue](https://github.com/markdown-it/markdown-it/issues/410 "加粗 Issue")。
+
 ### 3.5 链接
 
 微信公众号仅支持公众号文章链接，即域名为\`https://mp.weixin.qq.com/\`的合法链接。使用方法如下所示：
@@ -87,7 +93,7 @@ _这个是斜体_
 > 
 > [Markdown Nice最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 > 
-> ![这里写图片描述](/ex/pic/cd3ca20c-896f-4cfc-9bdd-c4c58e69ba26.jpg)
+> ![这里写图片描述](/ex/wechat.jpg)
 
 当使用多个 \`>\` 符号时，就会变成多级引用
 
@@ -99,7 +105,7 @@ _这个是斜体_
 >>
 >> [Markdown Nice最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 >> 
->> ![这里写图片描述](/ex/pic/cd3ca20c-896f-4cfc-9bdd-c4c58e69ba26.jpg)
+>> ![这里写图片描述](/ex/wechat.jpg)
 
 三级引用如下：
 
@@ -109,7 +115,7 @@ _这个是斜体_
 >>>
 >>> [Markdown Nice最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 >>> 
->>> ![这里写图片描述](/ex/pic/cd3ca20c-896f-4cfc-9bdd-c4c58e69ba26.jpg)
+>>> ![这里写图片描述](/ex/wechat.jpg)
 
 ### 3.7 分割线
 
@@ -145,7 +151,7 @@ _这个是斜体_
 
 插入图片，如果是行内图片则无图例，否则有图例，格式如下：
 
-![这里写图片描述](/ex/pic/cd3ca20c-896f-4cfc-9bdd-c4c58e69ba26.jpg)
+![这里写图片描述](/ex/wechat.jpg)
 
 可以通过在图片尾部添加宽度和高度控制图片大小，用法如下：
 
@@ -251,21 +257,21 @@ diff 不能同时和其他语言的高亮同时显示，且需要调整代码主
 
 > 支持平台：微信公众号、知乎。
 
-行内公式使用方法，比如这个化学公式：$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$
+行内公式使用方法，比如这个化学公式：$\\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$
 
 块公式使用方法如下：
 
-$$H(D_2) = -\left(\frac{2}{4}\log_2 \frac{2}{4} + \frac{2}{4}\log_2 \frac{2}{4}\right) = 1$$
+$$H(D_2) = -\\left(\\frac{2}{4}\log_2 \\frac{2}{4} + \\frac{2}{4}\log_2 \\frac{2}{4}\\right) = 1$$
 
 矩阵：
 
 $$
-  \begin{pmatrix}
-  1 & a_1 & a_1^2 & \cdots & a_1^n \\
-  1 & a_2 & a_2^2 & \cdots & a_2^n \\
-  \vdots & \vdots & \vdots & \ddots & \vdots \\
-  1 & a_m & a_m^2 & \cdots & a_m^n \\
-  \end{pmatrix}
+  \\begin{pmatrix}
+  1 & a_1 & a_1^2 & \\cdots & a_1^n \\\\
+  1 & a_2 & a_2^2 & \\cdots & a_2^n \\\\
+  \\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\
+  1 & a_m & a_m^2 & \\cdots & a_m^n \\\\
+  \\end{pmatrix}
 $$
 
 公式由于微信不支持，目前的解决方案是转成 svg 放到微信中，无需调整，矢量不失真。
@@ -300,74 +306,6 @@ Markdown Nice 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
 
 <![蓝1](/ex/blue.jpg),![绿2](/ex/green.jpg),![红3](/ex/red.jpg)>
 
-### 4.7 容器块
-
-> 支持平台：微信公众号。
-
-通过\`::: block-1\`开头，\`:::\`结尾，来设置容器块，容器块内可以使用任意 markdown 语法，容器块内显示样式可自定义，不会被外部干扰
-
-目前仅支持三种容器块，\`block-1\`、\`block-2\`和\`block-3\`
-
-::: block-1
-### 容器块 1 示例
-
-> 读一本好书，就是在和高尚的人谈话。 **——歌德**
-:::
-
-::: block-2
-### 容器块 2 示例
-
-> 读一本好书，就是在和高尚的人谈话。 **——歌德**
-:::
-
-::: block-3
-### 容器块 3 示例
-
-> 读一本好书，就是在和高尚的人谈话。 **——歌德**
-:::
-
-### 4.8 分列
-
-> 支持平台：微信公众号。
-
-对于需要 2 列展示的内容，可以通过分列语法实现，可以设置左右比例，不设置时默认各为50%，示例如下：
-
-:::: column
-::: column-left
-
-**左边的内容**
-
-![左边的图片](/ex/blue.jpg)
-
-:::
-::: column-right
-
-**右边的内容**
-
-![右边的图片](/ex/green.jpg)
-
-:::
-::::
-
-设置百分比示例如下：
-
-:::: column
-::: column-left 30%
-
-**左边的内容**
-
-![左边的图片](/ex/blue.jpg)
-
-:::
-::: column-right 70%
-
-**右边的内容**
-
-![右边的图片](/ex/green.jpg)
-
-:::
-::::
-
 ## 5 其他语法
 
 ### 5.1 HTML
@@ -383,5 +321,5 @@ Markdown Nice 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
 
 ### 5.3 更多文档
 
-更多文档请参考 [mdnice 产品主页](https://product.mdnice.com/articles/ "更多文档")
-`;
+更多文档请参考 [markdown-nice-docs](https://preview.mdnice.com/articles/ "更多文档")
+`

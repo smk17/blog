@@ -6,13 +6,21 @@ import markdownItTableOfContents from 'markdown-it-table-of-contents';
 import markdownItRuby from 'markdown-it-ruby';
 import markdownItImsize from 'markdown-it-imsize';
 
-import markdownItSpan from "./markdown-it-span";
-import markdownItTableContainer from "./markdown-it-table-container";
-import markdownItLinkfoot from "./markdown-it-linkfoot";
-import markdownItImageFlow from "./markdown-it-imageflow";
-import markdownItMultiquote from "./markdown-it-multiquote";
-import highlightjs from "./langHighlight";
-import markdownItLiReplacer from "./markdown-it-li";
+import markdownItSpan from './markdown-it-span';
+import markdownItTableContainer from './markdown-it-table-container';
+import markdownItLinkfoot from './markdown-it-linkfoot';
+import markdownItImageFlow from './markdown-it-imageflow';
+import markdownItMultiquote from './markdown-it-multiquote';
+import highlightjs from './langHighlight';
+import markdownItLiReplacer from './markdown-it-li';
+
+export const updateMathjax = () => {
+  try {
+    window.MathJax.texReset();
+    window.MathJax.typesetClear();
+    window.MathJax.typesetPromise();
+  } catch (error) {}
+};
 
 // 普通解析器，代码高亮用highlight
 export const markdownParser = new MarkdownIt({

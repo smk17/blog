@@ -7,6 +7,7 @@ specifiers:
   '@ant-design/pro-form': ^2.2.3
   '@ant-design/pro-layout': ^7.1.3
   '@ant-design/pro-table': ^3.0.11
+  '@codemirror/commands': ^6.1.2
   '@codemirror/lang-markdown': ^6.0.3
   '@codemirror/language-data': ^6.1.0
   '@codemirror/state': ^6.1.2
@@ -20,15 +21,12 @@ specifiers:
   '@types/crypto-js': ^4.1.1
   '@types/formidable': ^2.0.5
   '@types/lodash': ^4.14.186
+  '@types/lodash.throttle': ^4.1.7
   '@types/mongodb': ^4.0.7
   '@types/node': 18.7.21
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
   '@types/request': ^2.48.8
-  '@uiw/codemirror-extensions-events': ^4.12.4
-  '@uiw/codemirror-themes': ^4.12.4
-  '@uiw/codemirror-themes-all': ^4.12.4
-  '@uiw/react-codemirror': ^4.12.4
   '@umijs/fabric': ^3.0.0
   ahooks: ^3.7.1
   ali-oss: ^6.1.1
@@ -37,7 +35,7 @@ specifiers:
   axios: ^0.18.0
   babel-plugin-import: ^1.13.5
   classnames: ^2.3.2
-  codemirror: ^6.0.0
+  codemirror: ^6.0.1
   commitizen: ^4.2.5
   crypto-js: ^4.1.1
   cz-conventional-changelog: ^3.3.0
@@ -65,8 +63,9 @@ specifiers:
   markdown-it-ruby: ^0.1.1
   markdown-it-table-of-contents: ^0.4.4
   mathjax: ^3.0.1
-  mobx: ^5.9.0
-  mobx-react: ^5.4.3
+  mobx: ^6.3.13
+  mobx-react: ^7.2.1
+  mobx-react-lite: ^3.4.0
   moment: ^2.29.4
   mongodb: ^4.10.0
   mongoose: ^6.6.5
@@ -108,6 +107,7 @@ dependencies:
   '@ant-design/pro-form': 2.2.14_6nwhhda7mddhbr67q5guv5qsze
   '@ant-design/pro-layout': 7.1.15_6nwhhda7mddhbr67q5guv5qsze
   '@ant-design/pro-table': 3.1.0_6nwhhda7mddhbr67q5guv5qsze
+  '@codemirror/commands': 6.1.2
   '@codemirror/lang-markdown': 6.0.3
   '@codemirror/language-data': 6.1.0
   '@codemirror/state': 6.1.2
@@ -118,10 +118,6 @@ dependencies:
   '@sitdown/wechat': 1.1.4
   '@sitdown/zhihu': 1.1.2
   '@types/mongodb': 4.0.7
-  '@uiw/codemirror-extensions-events': 4.12.4_@codemirror+view@6.4.0
-  '@uiw/codemirror-themes': 4.12.4
-  '@uiw/codemirror-themes-all': 4.12.4
-  '@uiw/react-codemirror': 4.12.4_niesoovdq4acso2wlrrtxtwjw4
   ahooks: 3.7.2_react@18.2.0
   ali-oss: 6.17.1
   antd: 4.23.6_biqbaboplfbrettd7655fr4n2y
@@ -149,9 +145,10 @@ dependencies:
   markdown-it-katex: 2.0.3
   markdown-it-ruby: 0.1.1
   markdown-it-table-of-contents: 0.4.4
-  mathjax: 3.2.2
-  mobx: 5.15.7
-  mobx-react: 5.4.4_mobx@5.15.7+react@18.2.0
+  mathjax: 3.0.1
+  mobx: 6.6.2
+  mobx-react: 7.5.3_qrr2ojv4n7h7ey2xj7njerqqr4
+  mobx-react-lite: 3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4
   mongodb: 4.11.0
   mongoose: 6.7.0
   mysql2: 2.3.3
@@ -175,6 +172,7 @@ devDependencies:
   '@types/crypto-js': 4.1.1
   '@types/formidable': 2.0.5
   '@types/lodash': 4.14.186
+  '@types/lodash.throttle': 4.1.7
   '@types/node': 18.7.21
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -2928,15 +2926,6 @@ packages:
     resolution: {integrity: sha512-Mxff85Hp5va+zuj+H748KbubXjrinX/k28lj43H14T2D0+4kuvEFIEIO7hCEcvBT8ubZyIelt9yGOjj2MWOEQA==}
     dev: false
 
-  /@codemirror/theme-one-dark/6.1.0:
-    resolution: {integrity: sha512-AiTHtFRu8+vWT9wWUWDM+cog6ZwgivJogB1Tm/g40NIpLwph7AnmxrSzWfvJN5fBVufsuwBxecQCNmdcR5D7Aw==}
-    dependencies:
-      '@codemirror/language': 6.3.0
-      '@codemirror/state': 6.1.2
-      '@codemirror/view': 6.4.0
-      '@lezer/highlight': 1.1.2
-    dev: false
-
   /@codemirror/view/6.4.0:
     resolution: {integrity: sha512-Kv32b6Tn7QVwFbj/EDswTLSocjk5kgggF6zzBFAL4o4hZ/vmtFD155+EjH1pVlbfoDyVC2M6SedPsMrwYscgNg==}
     dependencies:
@@ -3544,6 +3533,12 @@ packages:
     resolution: {integrity: sha512-DUlIj2nk0YnJdlWgsFuVKcX27MLW0KbKmGVoUHmFr+74FYYNUDAaj9ZqTADvsbE8rfxuVmSFc7KczYn5Y09ozg==}
     dev: true
 
+  /@types/lodash.throttle/4.1.7:
+    resolution: {integrity: sha512-znwGDpjCHQ4FpLLx19w4OXDqq8+OvREa05H89obtSyXyOFKL3dDjCslsmfBz0T2FU8dmf5Wx1QvogbINiGIu9g==}
+    dependencies:
+      '@types/lodash': 4.14.186
+    dev: true
+
   /@types/lodash/4.14.186:
     resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
     dev: true
@@ -3859,149 +3854,6 @@ packages:
       '@typescript-eslint/types': 5.41.0
       eslint-visitor-keys: 3.3.0
     dev: true
-
-  /@uiw/codemirror-extensions-basic-setup/4.12.4:
-    resolution: {integrity: sha512-owSCcRBtS2wYjxgBFkuIjfjWJHsR8AxgsQtqPpHB/6U0zCLuzKS/OM5ZRS2T3rdOizg0hCPztVvmshWeKjF+qw==}
-    dependencies:
-      '@codemirror/autocomplete': 6.3.0
-      '@codemirror/commands': 6.1.2
-      '@codemirror/language': 6.3.0
-      '@codemirror/lint': 6.0.0
-      '@codemirror/search': 6.2.2
-      '@codemirror/state': 6.1.2
-      '@codemirror/view': 6.4.0
-    dev: false
-
-  /@uiw/codemirror-extensions-events/4.12.4_@codemirror+view@6.4.0:
-    resolution: {integrity: sha512-wbALZgg+NvTwwbeo3eHA4DVQCNGn88aYydrZe9w8ddFtZOsPx3j5hvPqETcEXQybgbpjoTdAKH/oNFD07MTgKQ==}
-    peerDependencies:
-      '@codemirror/view': '>=6.0.0'
-    dependencies:
-      '@codemirror/view': 6.4.0
-    dev: false
-
-  /@uiw/codemirror-theme-abcdef/4.12.4:
-    resolution: {integrity: sha512-EKyekI+ZXTI5tG5kSTN3Q8Es1aKFI+nPve01PUtWiE7F9fCrXLdlqkvTCRS4nyn2+XDNnanoQ9M3lxwavXIsHw==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-androidstudio/4.12.4:
-    resolution: {integrity: sha512-WJms4jkpsDioF1+pf2b1U57ARrmj7zEve45hCJN+IeKVrhJHUDpoBjN5lgH/X9mJl+K2NJt/mSmtkdYEUk96zQ==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-atomone/4.12.4:
-    resolution: {integrity: sha512-yygBAW2f9GQxs4b609UGHloTyhdt+aHSGQPuRJRiUHLL9vAsuEkDudTwBowGgZHdK1YP778wPzHn6Bcobn3v9g==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-bbedit/4.12.4:
-    resolution: {integrity: sha512-DYlX8zirnNN0LXY8i08crfBp0sPPO4i+JleZNtoRL6QRJ93VMuJj/gL5yf17vSjw9G4jes3viqkthZm2PZVs9w==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-bespin/4.12.4:
-    resolution: {integrity: sha512-n2NSOHgAGf9eB1FNzkJ8bRc0DM1haUYqUp8DKNX3KUgi13W7ONTuvfEpyb6en0zi+DIL0sfMj4y5GP/jQ5Ee2Q==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-darcula/4.12.4:
-    resolution: {integrity: sha512-K2diZd3ymX8wVNTP+dbGl7smaGdk3JTB6T/uHgfqBvgvkhdUnUSC6JyjU5i695yJC3mTy9zoh51sM4lYBYl9jw==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-dracula/4.12.4:
-    resolution: {integrity: sha512-ObvT3bZpDCxzphYncvbiYcKX4dpT7T/uKumxFnM5VRkQA75/pTug92rDJfyQe9LYv2hQA20kkeemxQ/xjf1+CQ==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-duotone/4.12.4:
-    resolution: {integrity: sha512-Q5nO5Ofn5vy/++7Wof1mON2yLvg28fpaaLluUH8NcW98yemOwNIBInS49jsfjuL0qhnx0o/ADTSrUu4QT95AyA==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-eclipse/4.12.4:
-    resolution: {integrity: sha512-/7eKZHwhQFa4XznHqoIOruF00JhkxjZoMu9OJuDQW9VKmhn7NLjMui8U0rkrzs8Gg51dxL/Ybd9RlcDL1NDxLA==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-github/4.12.4:
-    resolution: {integrity: sha512-ni5/u6aqv+4Nq5i7BaQiDFmZGu/+BhoptjxvNBlqJjVuYeUfv27zFTdcaFf2GKVL7mPMX4Q4MltVGKDYoWe14Q==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-okaidia/4.12.4:
-    resolution: {integrity: sha512-HjUYunXrxxelmgu8vFSJCU33o6I0X/9eq/ItaqHH5J5bdeoxNv+6wMzxoWFMhv47YOjd+eNGvZ5epg6DbzkHng==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-sublime/4.12.4:
-    resolution: {integrity: sha512-2FSnzVGDvP43vB7P5d6WuofOQ6rOL2ns/eYUEG7nd1I6nUpnWBwzeBHQaADL5Yg/XI+afQpwE/USY22QhmcUEw==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-theme-xcode/4.12.4:
-    resolution: {integrity: sha512-f0pnL+wqfBS7UyMzctAXnVPSLnrUYz8n9rNWEwB5moCKvd7KbeiMM4TudxRMX63xbrIm+cGMVNgZDm/ypAp4hw==}
-    dependencies:
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-themes-all/4.12.4:
-    resolution: {integrity: sha512-Yh/FVSi9eBbveXehMODNFeNA3ct8lDb1cykMyUGAnyLkpuUOxXSG+IYV10kZ+XgI9I+6LQhdcsJswbRbea0A2g==}
-    dependencies:
-      '@uiw/codemirror-theme-abcdef': 4.12.4
-      '@uiw/codemirror-theme-androidstudio': 4.12.4
-      '@uiw/codemirror-theme-atomone': 4.12.4
-      '@uiw/codemirror-theme-bbedit': 4.12.4
-      '@uiw/codemirror-theme-bespin': 4.12.4
-      '@uiw/codemirror-theme-darcula': 4.12.4
-      '@uiw/codemirror-theme-dracula': 4.12.4
-      '@uiw/codemirror-theme-duotone': 4.12.4
-      '@uiw/codemirror-theme-eclipse': 4.12.4
-      '@uiw/codemirror-theme-github': 4.12.4
-      '@uiw/codemirror-theme-okaidia': 4.12.4
-      '@uiw/codemirror-theme-sublime': 4.12.4
-      '@uiw/codemirror-theme-xcode': 4.12.4
-      '@uiw/codemirror-themes': 4.12.4
-    dev: false
-
-  /@uiw/codemirror-themes/4.12.4:
-    resolution: {integrity: sha512-ekySMFlXaJ4u0TCz/caHG8HqJPT0+viUA2ZQ4yZ+F1z2Lk9HgMS/1YfRj8vHuEUPNXc9Fsy5qxwTp7I1hEanEg==}
-    dependencies:
-      '@codemirror/language': 6.3.0
-      '@codemirror/state': 6.1.2
-      '@codemirror/view': 6.4.0
-    dev: false
-
-  /@uiw/react-codemirror/4.12.4_niesoovdq4acso2wlrrtxtwjw4:
-    resolution: {integrity: sha512-92TAvN2z5snPjPtJDLmbqrqsXXYFYlBnWraXZuDc1XGaw80tB26ZkdEW79CD2QM4Y9LhFIt+sauwlmiAVDs/5A==}
-    peerDependencies:
-      '@codemirror/view': '>=6.0.0'
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@babel/runtime': 7.20.0
-      '@codemirror/commands': 6.1.2
-      '@codemirror/state': 6.1.2
-      '@codemirror/theme-one-dark': 6.1.0
-      '@codemirror/view': 6.4.0
-      '@uiw/codemirror-extensions-basic-setup': 4.12.4
-      codemirror: 6.0.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
 
   /@umijs/fabric/3.0.0:
     resolution: {integrity: sha512-1mkcltWbSfq0fioR4Bw8mabe1Vjo85LBE84eQM4E5uYXk2qW3zUMrZcp0z8a6RQQDiYitQl3ch8kqaDPStHODw==}
@@ -8007,8 +7859,8 @@ packages:
     resolution: {integrity: sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==}
     dev: false
 
-  /mathjax/3.2.2:
-    resolution: {integrity: sha512-Bt+SSVU8eBG27zChVewOicYs7Xsdt40qm4+UpHyX7k0/O9NliPc+x77k1/FEsPsjKPZGJvtRZM1vO+geW0OhGw==}
+  /mathjax/3.0.1:
+    resolution: {integrity: sha512-hrwOeKm3b1X4zpvLRSX89y3MZLRJTq0bSGIbo5M6BANOeGlL2z8Y8mZaKRFJ/WY4qcIrHp3f+Q9RWIaldOCUVg==}
     dev: false
 
   /mathml-tag-names/2.1.3:
@@ -8584,20 +8436,45 @@ packages:
     dependencies:
       minimist: 1.2.7
 
-  /mobx-react/5.4.4_mobx@5.15.7+react@18.2.0:
-    resolution: {integrity: sha512-2mTzpyEjVB/RGk2i6KbcmP4HWcAUFox5ZRCrGvSyz49w20I4C4qql63grPpYrS9E9GKwgydBHQlA4y665LuRCQ==}
+  /mobx-react-lite/3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4:
+    resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
     peerDependencies:
-      mobx: ^4.0.0 || ^5.0.0
-      react: ^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0
+      mobx: ^6.1.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
     dependencies:
-      hoist-non-react-statics: 3.3.2
-      mobx: 5.15.7
+      mobx: 6.6.2
       react: 18.2.0
-      react-lifecycles-compat: 3.0.4
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /mobx/5.15.7:
-    resolution: {integrity: sha512-wyM3FghTkhmC+hQjyPGGFdpehrcX1KOXsDuERhfK2YbJemkUhEB+6wzEN639T21onxlfYBmriA1PFnvxTUhcKw==}
+  /mobx-react/7.5.3_qrr2ojv4n7h7ey2xj7njerqqr4:
+    resolution: {integrity: sha512-+ltotliKt4Bjn3d8taZH/VFAcRUbaASvsM8/QSvmHXcZ++RZwaFtjl9JkIosy1byaJGEDS3EFFx2InRm2VaSUw==}
+    peerDependencies:
+      mobx: ^6.1.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.6.2
+      mobx-react-lite: 3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /mobx/6.6.2:
+    resolution: {integrity: sha512-IOpS0bf3+hXIhDIy+CmlNMBfFpAbHS0aVHcNC+xH/TFYEKIIVDKNYRh9eKlXuVfJ1iRKAp0cRVmO145CyJAMVQ==}
     dev: false
 
   /moment-timezone/0.5.38:

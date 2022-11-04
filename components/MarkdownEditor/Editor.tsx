@@ -1,17 +1,12 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useRef } from 'react';
+import { observer } from 'mobx-react-lite';
 import Head from 'next/head';
-import { EditorView } from 'codemirror';
 import { Result } from 'antd';
-import { isPC, replaceStyle } from 'utils';
-import { useControllableValue, useMount } from 'ahooks';
+import { isPC } from 'utils';
+import { useMount, useUnmount } from 'ahooks';
 import { SmileOutlined } from '@ant-design/icons';
-import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
-import * as events from '@uiw/codemirror-extensions-events';
-import { languages } from '@codemirror/language-data';
-import { markdownParser } from './utils/helper';
-import { basic, githubLight, defaultContent } from './theme';
-import { THEME_ID } from './constant';
+import { CODE_THEME_ID, THEME_ID } from './constant';
+import { Store } from './store';
 
 export interface MarkdownEditorProps {
   /**
@@ -21,110 +16,64 @@ export interface MarkdownEditorProps {
   /**
    * 默认编辑器内容
    */
-  value?: string;
-  /**
-   * 编辑器内容监听函数
-   */
-  onChange?: (value: string) => void;
+  defaultValue?: string;
 }
 
-function MarkdownEditor(props: MarkdownEditorProps) {
+const Editor = observer<{ store: Store }>(({ store }) => {
+  const editor = useRef<HTMLDivElement>(null);
   const preview = useRef<HTMLDivElement>(null);
-  const codeMirror = useRef<ReactCodeMirrorRef>(null);
-  const active = useRef<'editor' | 'preview'>('editor');
-  const [value, onChange] = useControllableValue<string>(props);
-  const parseHtml = useMemo(() => markdownParser.render(value), [value]);
+  const { title, parseHtml, lineCount, wordCount } = store;
+  useMount(() => store.init(editor.current!, preview.current!));
+  useUnmount(() => store.previewUnMount());
 
-  const mouseoverHandle = () => (active.current = 'preview');
-  const mouseleaveHandle = () => (active.current = 'editor');
-  const previewScrollHandle = (event: Event) => {
-    const target = event.target as HTMLDivElement;
-    const percent = target.scrollTop / target.scrollHeight;
-    if (active.current === 'editor' && preview.current) {
-      const previewHeihgt = preview.current?.scrollHeight || 0;
-      preview.current!.scrollTop = previewHeihgt * percent;
-    } else if (codeMirror.current && codeMirror.current.view) {
-      const editorScrollDom = codeMirror.current.view.scrollDOM;
-      const editorScrollHeihgt = codeMirror.current.view.scrollDOM.scrollHeight || 0;
-      editorScrollDom.scrollTop = editorScrollHeihgt * percent;
-    }
-  };
+  return (
+    <div className="w-screen h-screen overflow-hidden">
+      <div className="flex items-center h-8 flex-none relative z-20 bg-white shadow-[0_4px_10px_rgb(0,0,0,0.05)]">
+        <div className="flex-1 flex items-center justify-start">
+          <section className="text-base pl-5 pr-2 font-bold">{title}</section>
+        </div>
+      </div>
+      <div className="flex w-full h-[calc(100vh-3.5rem)]">
+        <div className="flex-1 w-1/3 relative text-base bg-neutral-100">
+          <div ref={editor} className="CodeMirror w-full h-full overflow-auto"></div>
+        </div>
 
-  const scrollExtensions = events.scroll({
-    scroll: previewScrollHandle,
-  });
-
-  useMount(() => {
-    // 初始化整体主题
-    replaceStyle(THEME_ID, basic);
-    if (!value) onChange(defaultContent);
-  });
-
-  useEffect(() => {
-    const $preview = preview.current;
-    if ($preview) {
-      $preview.addEventListener('mouseover', mouseoverHandle, false);
-      $preview.addEventListener('mouseleave', mouseleaveHandle, false);
-      $preview.addEventListener('scroll', previewScrollHandle, false);
-    }
-    return () => {
-      if ($preview) {
-        $preview.removeEventListener('mouseover', mouseoverHandle);
-        $preview.removeEventListener('mouseleave', mouseoverHandle);
-        $preview.addEventListener('mouseleave', previewScrollHandle, false);
-      }
-    };
-  }, []);
-  const render = () => {
-    if (isPC())
-      return (
-        <div className="w-screen h-screen overflow-hidden">
-          <div className="flex items-center h-8 flex-none relative z-20 bg-white shadow-[0_4px_10px_rgb(0,0,0,0.05)]">
-            <div className="flex-1 flex items-center justify-start">
-              <section className="text-base pl-5 pr-2 font-bold">{props.defaultTitle}</section>
-            </div>
-          </div>
-          <div className="flex w-full h-[calc(100vh-3.5rem)]">
-            <div className="flex-1 w-1/3 relative">
-              <CodeMirror
-                ref={codeMirror}
-                value={value}
-                theme={githubLight}
-                width={'100%'}
-                basicSetup={{ lineNumbers: false, foldGutter: false }}
-                className="CodeMirror w-full h-full p-5 overflow-x-hidden overflow-y-auto relative bg-neutral-100"
-                extensions={[
-                  scrollExtensions,
-                  EditorView.lineWrapping,
-                  markdown({ base: markdownLanguage, codeLanguages: languages }),
-                ]}
-                onChange={onChange}
-              />
-            </div>
-
-            <div className="flex-1 w-1/3 p-5 relative flex justify-center">
-              <div
-                className="overflow-y-auto py-6 px-5 h-full w-[375px] shadow-[0_0_60px_rgb(0,0,0,0.1)]"
-                ref={preview}
-              >
-                <section
-                  id={'nice'}
-                  data-tool="mdnice编辑器"
-                  data-website="https://www.mdnice.com"
-                  dangerouslySetInnerHTML={{
-                    __html: parseHtml,
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="px-2 w-full h-6 flex justify-between">
-            <div className="flex items-center text-xs bg-white">
-              <div className="m-0 px-3">主题：全栈蓝</div>
-            </div>
+        <div className="flex-1 w-1/3 p-5 relative flex justify-center">
+          <div
+            className="overflow-y-auto py-6 px-5 h-full w-[375px] shadow-[0_0_60px_rgb(0,0,0,0.1)]"
+            ref={preview}
+          >
+            <section
+              id={'nice'}
+              data-tool="mdnice编辑器"
+              data-website="https://www.mdnice.com"
+              dangerouslySetInnerHTML={{
+                __html: parseHtml,
+              }}
+            />
           </div>
         </div>
-      );
+      </div>
+      <div className="px-2 w-full h-6 flex justify-between">
+        <div className="flex items-center text-xs bg-white">
+          <div className="m-0 px-3">
+            行数：
+            {lineCount}
+          </div>
+          <div className="m-0 px-3">
+            字数：
+            {wordCount}
+          </div>
+          <div className="m-0 px-3">主题：全栈蓝</div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+function MarkdownEditor({ defaultTitle, defaultValue }: MarkdownEditorProps) {
+  const render = () => {
+    if (isPC()) return <Editor store={new Store(defaultTitle, defaultValue)} />;
     return (
       <Result
         icon={<SmileOutlined />}
@@ -137,6 +86,7 @@ function MarkdownEditor(props: MarkdownEditorProps) {
     <>
       <Head>
         <style id={THEME_ID}></style>
+        <style id={CODE_THEME_ID}></style>
       </Head>
       {render()}
     </>

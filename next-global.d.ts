@@ -12,6 +12,10 @@ declare namespace NodeJS {
   }
 }
 
+interface Window {
+  MathJax: any;
+}
+
 declare namespace Pagination {
   interface Params {
     [key: string]: any;
