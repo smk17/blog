@@ -5,7 +5,6 @@ import { AdminLayout } from 'components';
 import { SessionProvider, SessionProviderProps } from 'next-auth/react';
 
 import 'styles/globals.css';
-import 'antd/dist/antd.variable.min.css';
 
 interface LayoutProps {
   children?: React.ReactNode;

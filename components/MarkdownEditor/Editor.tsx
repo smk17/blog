@@ -23,8 +23,8 @@ const Editor = observer<{ store: Store }>(({ store }) => {
   const editor = useRef<HTMLDivElement>(null);
   const preview = useRef<HTMLDivElement>(null);
   const { title, parseHtml, lineCount, wordCount } = store;
-  useMount(() => store.init(editor.current!, preview.current!));
-  useUnmount(() => store.previewUnMount());
+  useMount(() => store.mount(editor.current!, preview.current!));
+  useUnmount(() => store.unmount());
 
   return (
     <div className="w-screen h-screen overflow-hidden">

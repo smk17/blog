@@ -38,13 +38,12 @@ export class Store {
     this.parseHtml = markdownParser.render(this.content);
     this.lineCount = this.content.split('\n').length;
     this.wordCount = wordCalc(this.content);
-    // this.handleUpdateMathjax();
+    this.handleUpdateMathjax();
   }
 
   init(editor?: HTMLDivElement, preview?: HTMLDivElement) {
     this.editor = editor;
     this.preview = preview;
-    this.previewMount();
 
     // 初始化整体主题
     replaceStyle(THEME_ID, basic);
@@ -57,19 +56,21 @@ export class Store {
         this.update(doc.toString());
       }
     });
-    const syncScroll = EditorView.domEventHandlers({
+    const domEventHandlers = EditorView.domEventHandlers({
       scroll: throttle((event) => {
         this.previewScrollHandle(event);
       }, 80),
+      // drop(event, view) {},
+      // paste(event, view) {},
     });
 
     const startState = EditorState.create({
       doc: this.content,
       extensions: [
         theme,
-        syncScroll,
         basicSetup,
         updateListener,
+        domEventHandlers,
         EditorView.lineWrapping,
         markdown({ base: markdownLanguage, codeLanguages: languages }),
       ],
@@ -124,21 +125,22 @@ export class Store {
     }
   }
 
-  previewMount() {
+  mount = (editor?: HTMLDivElement, preview?: HTMLDivElement) => {
+    this.init(editor, preview);
     if (this.preview) {
       this.preview.addEventListener('mouseover', this.mouseoverHandle, false);
       this.preview.addEventListener('mouseleave', this.mouseleaveHandle, false);
       this.preview.addEventListener('scroll', this.previewScrollHandle, false);
     }
-  }
+  };
 
-  previewUnMount() {
+  unmount = () => {
     if (this.preview) {
       this.preview.removeEventListener('mouseover', this.mouseoverHandle);
       this.preview.removeEventListener('mouseleave', this.mouseleaveHandle);
       this.preview.removeEventListener('scroll', this.previewScrollHandle);
     }
-  }
+  };
 
   handleUpdateMathjax = throttle(updateMathjax, THROTTLE_MATHJAX_TIME);
   mouseoverHandle = () => (this.active = 'preview');
