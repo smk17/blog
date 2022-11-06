@@ -14,6 +14,7 @@ declare namespace NodeJS {
 
 interface Window {
   MathJax: any;
+  toggleDarkMode?(): void;
 }
 
 declare namespace Pagination {

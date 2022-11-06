@@ -26,6 +26,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* Keyboard will use a large outline. */
+.js-focus-visible button.focus-visible {
+  outline: 4px dashed black;
+}
+
+/* Mouse/Touch will use a subtle drop shadow. */
+.js-focus-visible button:focus:not(.focus-visible) {
+  outline: none;
+  box-shadow: 1px 1px 5px rgba(1, 1, 0, 0.7);
+}
+
 ::-webkit-scrollbar {
   @apply w-1.5 h-1.5;
 }

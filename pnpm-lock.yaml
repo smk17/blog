@@ -12,6 +12,7 @@ specifiers:
   '@codemirror/language-data': ^6.1.0
   '@codemirror/state': ^6.1.2
   '@codemirror/view': ^6.4.0
+  '@headlessui/react': ^1.7.4
   '@lezer/highlight': ^1.1.2
   '@next-auth/mongodb-adapter': ^1.1.1
   '@sitdown/juejin': ^1.1.1
@@ -44,6 +45,7 @@ specifiers:
   diff-match-patch: ^1.0.4
   eslint: 8.24.0
   eslint-config-next: 12.3.1
+  focus-visible: ^5.2.0
   formidable: ^2.0.1
   formstream: ^1.1.1
   highlight.js: ^9.15.6
@@ -112,6 +114,7 @@ dependencies:
   '@codemirror/language-data': 6.1.0
   '@codemirror/state': 6.1.2
   '@codemirror/view': 6.4.0
+  '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
   '@lezer/highlight': 1.1.2
   '@next-auth/mongodb-adapter': 1.1.1_md76zh5oazqg6vhgtp5ouxg6ra
   '@sitdown/juejin': 1.1.3
@@ -128,6 +131,7 @@ dependencies:
   crypto-js: 4.1.1
   daisyui: 2.36.1_lycaqaeny3mp632atgvyvqdgwe
   diff-match-patch: 1.0.5
+  focus-visible: 5.2.0
   formidable: 2.0.1
   formstream: 1.1.1
   highlight.js: 9.18.5
@@ -3048,6 +3052,18 @@ packages:
       - supports-color
     dev: true
 
+  /@headlessui/react/1.7.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-D8n5yGCF3WIkPsjEYeM8knn9jQ70bigGGb5aUvN6y4BGxcT3OcOQOKcM3zRGllRCZCFxCZyQvYJF6ZE7bQUOyQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@humanwhocodes/config-array/0.10.7:
     resolution: {integrity: sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w==}
     engines: {node: '>=10.10.0'}
@@ -4704,6 +4720,10 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /client-only/0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
+
   /clone-deep/4.0.1:
     resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}
     engines: {node: '>=6'}
@@ -6292,6 +6312,10 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
+
+  /focus-visible/5.2.0:
+    resolution: {integrity: sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==}
+    dev: false
 
   /follow-redirects/1.5.10:
     resolution: {integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==}
