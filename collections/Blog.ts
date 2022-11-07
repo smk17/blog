@@ -12,6 +12,7 @@ interface IBlog {
   content?: string;
   status?: string;
   type?: string;
+  recommend?: boolean;
   tags?: Array<{ value: string; label: string; key?: string }>;
 }
 
@@ -24,6 +25,7 @@ export const Blog = createModel<IBlog>('Blog', {
   type: { type: String, default: 'blog' },
   tags: [{ value: String, label: String }],
   cover: { type: Schema.Types.ObjectId, ref: 'Resource' },
+  recommend: Boolean,
   status: String,
 });
 
@@ -116,8 +118,6 @@ export async function updateBlog(
 }
 
 export async function updateBlogContent(id: string, content: string) {
-  console.log('updateBlogContent', content);
-  
   const doc = await Blog.findByIdAndUpdate(id, { content });
   if (doc == null) {
     throw Error(`Blog 不存在`);

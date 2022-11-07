@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import 'antd/dist/antd.variable.min.css';
 
 export type { MarkdownEditorProps } from './store';
 

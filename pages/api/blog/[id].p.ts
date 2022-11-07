@@ -14,9 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     if (req.method === 'PUT') {
-      const { slug, title, tags, cover } = req.body;
+      const { slug, title, tags, cover, recommend } = req.body;
 
-      await descriptor(updateBlog)(id, { slug, title, tags, cover });
+      await descriptor(updateBlog)(id, { slug, title, tags, cover, recommend });
       res.status(200).json({ id });
       return;
     }

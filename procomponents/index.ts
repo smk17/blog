@@ -21,6 +21,9 @@ export const ProFormText = dynamic(() => import('./ProFormText'), {
 export const ProFormSelect = dynamic(() => import('./ProFormSelect'), {
   ssr: false,
 });
+export const ProFormSwitch = dynamic(() => import('./ProFormSwitch'), {
+  ssr: false,
+});
 export const ProFormUploadButton = dynamic(() => import('./ProFormUploadButton'), {
   ssr: false,
 });

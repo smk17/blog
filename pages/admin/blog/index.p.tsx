@@ -9,7 +9,7 @@ import { IResource } from 'collections';
 import { Modal, Form, Upload, message } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { useControllableValue, useBoolean } from 'ahooks';
-import type { ActionType, ProFormInstance } from 'procomponents';
+import { ActionType, ProFormInstance, ProFormSwitch } from 'procomponents';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { ProTable, ModalForm, ProFormText, ProFormSelect } from 'procomponents';
@@ -26,9 +26,9 @@ const beforeUpload = (file: RcFile) => {
   if (!isJpgOrPng) {
     message.error('您只能上传 JPG/PNG 文件！');
   }
-  const isLt2M = file.size / 1024 / 1024 < 1;
+  const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('图片必须小于 1MB!');
+    message.error('图片必须小于 2MB!');
   }
   return isJpgOrPng && isLt2M;
 };
@@ -60,7 +60,7 @@ const Cover = (props: CoverProps) => {
       listType="picture-card"
       className="avatar-uploader"
       showUploadList={false}
-      action="/api/wx/files/upload"
+      action="/api/files/upload"
       beforeUpload={beforeUpload}
       onChange={handleChange}
     >
@@ -97,6 +97,7 @@ const Home: NextPage = () => {
         <Form.Item label="封面" name="cover">
           <Cover />
         </Form.Item>
+        <ProFormSwitch name="recommend" label="是否推荐到首页" />
         <ProFormSelect
           request={(params = {}) => request.get('/api/tag/select', { params })}
           name="tags"
@@ -133,7 +134,16 @@ const Home: NextPage = () => {
           {
             title: '标题',
             dataIndex: 'title',
-            ellipsis: true,
+            ellipsis: false,
+          },
+          {
+            title: '是否推荐到首页',
+            dataIndex: 'recommend',
+            valueType: 'select',
+            valueEnum: {
+              true: { text: '推荐', type: 'Success' },
+              false: { text: '不推荐', type: 'Processing' },
+            },
           },
           {
             title: '创建时间',
