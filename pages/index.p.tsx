@@ -30,6 +30,10 @@ const Home: NextPage = () => {
                   <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
                     I am a web developer helping make the world a better place through JavaScript.
                   </p>
+                  <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400">
+                    I am an open-source contributor and I like making things that help people with
+                    their work.
+                  </p>
                   <div className="mt-6 flex gap-6">
                     <a
                       className="group -m-1 p-1"

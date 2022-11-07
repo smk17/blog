@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { message } from 'antd';
 import { useRequest } from 'ahooks';
 import { MarkdownEditor } from 'components';
 import { request } from 'utils';
@@ -18,15 +17,7 @@ const Home: NextPage = () => {
       onTextChange(res.content);
     },
   });
-  const req = useRequest(
-    (content: string) => request.patch(`/api/blog/${id}`, { data: { content } }),
-    {
-      manual: true,
-      onSuccess() {
-        message.success('更新成功');
-      },
-    },
-  );
+  const onPublish = (content: string) => request.patch(`/api/blog/${id}`, { data: { content } });
 
   if (loading) return null;
 
@@ -37,7 +28,7 @@ const Home: NextPage = () => {
         <meta name="description" content="编辑文章" />
       </Head>
 
-      <MarkdownEditor defaultTitle={data.title} value={text} onChange={onTextChange} />
+      <MarkdownEditor defaultTitle={data.title} defaultValue={text} onPublish={onPublish} />
     </>
   );
 };

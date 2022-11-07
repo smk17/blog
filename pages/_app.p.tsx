@@ -29,7 +29,7 @@ function MyApp({
         <Head>
           <title>{process.env.title}</title>
         </Head>
-        <Script dangerouslySetInnerHTML={{ __html: darkMode }} />
+        <Script id="darkMode" dangerouslySetInnerHTML={{ __html: darkMode }} />
         <Component {...pageProps} />
       </Layout>
     </SessionProvider>

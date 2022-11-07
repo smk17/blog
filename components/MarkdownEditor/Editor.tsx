@@ -1,28 +1,21 @@
 import { useRef } from 'react';
 import { observer } from 'mobx-react-lite';
 import Head from 'next/head';
-import { Result } from 'antd';
+import { Button, Result } from 'antd';
 import { isPC } from 'utils';
 import { useMount, useUnmount } from 'ahooks';
 import { SmileOutlined } from '@ant-design/icons';
 import { CODE_THEME_ID, THEME_ID } from './constant';
-import { Store } from './store';
+import { MarkdownEditorProps, Store } from './store';
 
-export interface MarkdownEditorProps {
-  /**
-   * 默认标题
-   */
-  defaultTitle?: string;
-  /**
-   * 默认编辑器内容
-   */
-  defaultValue?: string;
+interface EditorProps {
+  store: Store;
 }
 
-const Editor = observer<{ store: Store }>(({ store }) => {
+const Editor = observer<EditorProps>(({ store }) => {
   const editor = useRef<HTMLDivElement>(null);
   const preview = useRef<HTMLDivElement>(null);
-  const { title, parseHtml, lineCount, wordCount } = store;
+  const { title, content, parseHtml, lineCount, wordCount, publishLoading, onPublish } = store;
   useMount(() => store.mount(editor.current!, preview.current!));
   useUnmount(() => store.unmount());
 
@@ -31,6 +24,11 @@ const Editor = observer<{ store: Store }>(({ store }) => {
       <div className="flex items-center h-8 flex-none relative z-20 bg-white shadow-[0_4px_10px_rgb(0,0,0,0.05)]">
         <div className="flex-1 flex items-center justify-start">
           <section className="text-base pl-5 pr-2 font-bold">{title}</section>
+        </div>
+        <div className="flex items-center justify-end">
+          <Button loading={publishLoading} type="primary" onClick={onPublish}>
+            发布
+          </Button>
         </div>
       </div>
       <div className="flex w-full h-[calc(100vh-3.5rem)]">
@@ -71,9 +69,9 @@ const Editor = observer<{ store: Store }>(({ store }) => {
   );
 });
 
-function MarkdownEditor({ defaultTitle, defaultValue }: MarkdownEditorProps) {
+function MarkdownEditor(props: MarkdownEditorProps) {
   const render = () => {
-    if (isPC()) return <Editor store={new Store(defaultTitle, defaultValue)} />;
+    if (isPC()) return <Editor store={new Store(props)} />;
     return (
       <Result
         icon={<SmileOutlined />}

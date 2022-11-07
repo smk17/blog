@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import { makeAutoObservable } from 'mobx';
 import throttle from 'lodash.throttle';
 import { replaceStyle, wordCalc } from 'utils';
@@ -15,21 +16,44 @@ import {
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
 
+export interface MarkdownEditorProps {
+  /**
+   * 默认标题
+   */
+  defaultTitle?: string;
+  /**
+   * 默认编辑器内容
+   */
+  defaultValue?: string;
+  onPublish?: (content: string) => Promise<void>;
+}
+
 export class Store {
+  title: string;
   content: string;
   parseHtml: string;
   lineCount: number;
   wordCount: number;
 
+  publishLoading?: boolean;
+  onPublish?: () => Promise<void>;
+
   editorView?: EditorView;
   editor?: HTMLDivElement;
   preview?: HTMLDivElement;
   active: 'editor' | 'preview' = 'editor';
-  constructor(public title?: string, defaultValue?: string) {
-    this.content = defaultValue ?? defaultContent;
+  constructor({ defaultTitle, defaultValue, onPublish }: MarkdownEditorProps) {
+    this.title = defaultTitle || 'Markdown Editor';
+    this.content = defaultValue || defaultContent;
     this.parseHtml = markdownParser.render(this.content);
     this.lineCount = this.content.split('\n').length;
     this.wordCount = wordCalc(this.content);
+    this.onPublish = async () => {
+      this.publishLoading = true;
+      await onPublish?.(this.content);
+      message.success('更新成功');
+      this.publishLoading = false;
+    };
     makeAutoObservable(this);
   }
 
