@@ -94,6 +94,7 @@ const Home: NextPage = () => {
           placeholder="请输入短链"
           rules={[{ required: true, message: '请输入短链' }]}
         />
+        <ProFormText name="description" label="描述" placeholder="请输入描述" />
         <Form.Item label="封面" name="cover">
           <Cover />
         </Form.Item>
@@ -124,6 +125,7 @@ const Home: NextPage = () => {
           {
             title: '短链',
             dataIndex: 'slug',
+            hideInSearch: true,
             width: 200,
             render: (_, record) => (
               <Link href={`/blog/${record.slug}`}>
@@ -139,6 +141,7 @@ const Home: NextPage = () => {
           {
             title: '是否推荐到首页',
             dataIndex: 'recommend',
+            hideInSearch: true,
             valueType: 'select',
             valueEnum: {
               true: { text: '推荐', type: 'Success' },

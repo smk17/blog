@@ -7,8 +7,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { ProLayout, PageContainer } from 'procomponents';
 import { LoadingOutlined, LogoutOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { defaultProps } from './defaultProps';
-
-// import styles from './index.module.scss';
+import { AntLayout } from 'components/AntLayout';
 
 interface Props {
   children?: React.ReactNode;
@@ -25,7 +24,7 @@ export const AdminLayout = ({ children }: Props) => {
       <div className={classNames('w-screen h-screen')}>
         {session?.user?.access ? (
           router.route.indexOf('/admin/blog/') === 0 ? (
-            children
+            <AntLayout>{children}</AntLayout>
           ) : (
             <ProLayout
               {...defaultProps}

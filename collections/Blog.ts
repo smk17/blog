@@ -8,6 +8,7 @@ import { TagMap } from './TagMap';
 interface IBlog {
   slug: string;
   title: string;
+  description?: string;
   cover?: ObjectId;
   content?: string;
   status?: string;
@@ -21,6 +22,7 @@ export type BlogInfo = IBlog & IModel;
 export const Blog = createModel<IBlog>('Blog', {
   slug: { type: String, required: true },
   title: { type: String, required: true },
+  description: { type: String, default: '' },
   content: { type: String, default: '' },
   type: { type: String, default: 'blog' },
   tags: [{ value: String, label: String }],
