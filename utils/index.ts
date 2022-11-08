@@ -8,7 +8,7 @@ export function errorToJSON(error: Error | unknown) {
   };
 }
 
-export function serializable<T>(o: T) {
+export function serializable<T>(o: T): T {
   return JSON.parse(JSON.stringify(o));
 }
 

@@ -14,11 +14,18 @@ export const BlogLayout = ({ children }: Props) => {
     console.log('isHome', isHome);
 
     document.body.style.cssText = `--header-position: sticky;
+        --header-inner-position: sticky;
         --content-offset: ${isHome ? 116 : 0}px;
         --header-height: ${isHome ? 180 : 64}px;
         --header-mb: ${isHome ? -116 : 0}px;
-        --avatar-image-transform: translate3d(0rem, 0, 0) scale(1);
-        --avatar-border-transform: translate3d(-0.222222rem, 0, 0) scale(1.77778);
+        --avatar-image-transform: ${
+          isHome ? 'translate3d(0rem, 0, 0) scale(1)' : 'translate3d(0.125rem, 0, 0) scale(0.5625)'
+        };
+        --avatar-border-transform: ${
+          isHome
+            ? 'translate3d(-0.222222rem, 0, 0) scale(1.77778)'
+            : 'translate3d(0rem, 0, 0) scale(1)'
+        };
         --avatar-border-opacity: 0;
         --header-top: 0px;
         --avatar-top: 0px;`;

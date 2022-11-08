@@ -169,8 +169,13 @@ export async function findBlog({ current, pageSize, ...blog }: Pagination.Params
   return blogs;
 }
 
+export async function getBlogCount(blog: Partial<IBlog> = {}) {
+  const total = await Blog.find(blog).count().exec();
+  return total;
+}
+
 export async function findBlogAndCount(params: Pagination.Params) {
-  const total = await Blog.find(params.blog).count().exec();
+  const total = await getBlogCount(params.blog);
   const blogs = await findBlog(params);
 
   return { success: true, total, data: blogs };
