@@ -11,7 +11,7 @@ export default `![](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847
 
 ## 2 主题
 
-**https://preview.mdBore.com/themes/**
+**https://b.ore.work/themes/**
 
 欢迎提交主题，提供更多文章示例~~
 
@@ -76,7 +76,7 @@ _这个是斜体_
 
 微信公众号仅支持公众号文章链接，即域名为\`https://mp.weixin.qq.com/\`的合法链接。使用方法如下所示：
 
-对于该论述，欢迎读者查阅之前发过的文章，[你是《未来世界的幸存者》么？](https://mp.weixin.qq.com/s/s5IhxV2ooX3JN_X416nidA)
+对于该功能实现，欢迎读者查阅之前发过的文章，[今日头条闪动加载动画实现](https://mp.weixin.qq.com/s/YA-O3m2joxCvQrKA57xDUA)
 
 ### 3.6 引用
 
@@ -88,7 +88,7 @@ _这个是斜体_
 > 
 > 读一本好书，就是在和高尚的人谈话。 **——歌德**
 > 
-> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
+> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/YA-O3m2joxCvQrKA57xDUA)
 > 
 > ![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
@@ -100,7 +100,7 @@ _这个是斜体_
 >>
 >> 读一本好书，就是在和高尚的人谈话。 **——歌德**
 >>
->> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
+>> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/YA-O3m2joxCvQrKA57xDUA)
 >> 
 >> ![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
@@ -110,7 +110,7 @@ _这个是斜体_
 >>>
 >>> 读一本好书，就是在和高尚的人谈话。 **——歌德**
 >>>
->>> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
+>>> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/YA-O3m2joxCvQrKA57xDUA)
 >>> 
 >>> ![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
@@ -132,17 +132,17 @@ _这个是斜体_
 
 | 姓名       | 年龄 |         工作 |
 | :--------- | :--: | -----------: |
-| 小可爱     |  18  |     吃可爱多 |
-| 小小勇敢   |  20  |   爬棵勇敢树 |
-| 小小小机智 |  22  | 看一本机智书 |
+| 小聪明     |  18  |     打大聪明  |
+| 零一       |  20  | 努力赚钱养二四 |
+| 二四       |  22  |      逛街闲聊 |
 
 宽度过长的表格可以滚动，可在自定义主题中调节宽度：
 
 | 姓名       | 年龄 |         工作 |      邮箱       |    手机     |
 | :--------- | :--: | -----------: | :-------------: | :---------: |
-| 小可爱     |  18  |     吃可爱多 | lovely@test.com | 18812345678 |
-| 小小勇敢   |  20  |   爬棵勇敢树 | brave@test.com  | 17712345678 |
-| 小小小机智 |  22  | 看一本机智书 | smart@test.com  | 16612345678 |
+| 小聪明     |  18  |     打大聪明   |  xiaocm@test.com | 18012345678 |
+| 零一       |  20  | 努力赚钱养二四  |    10@test.com  |  18812345678 |
+| 二四       |  22  |      逛街闲聊  |    24@test.com  |  13012345678 |
 
 ### 3.10 图片
 
@@ -163,7 +163,6 @@ _这个是斜体_
 ![i-am-svg.svg](https://1024-staging-1258723534.cos.ap-guangzhou.myqcloud.com/avatar/2022110914-QFjSUP6QV68psowU.svg)
 
 - 支持图片**拖拽和截图粘贴**到编辑器中上传，上传时使用当前选择的图床。
-- 可使用**格式->图片**上传本地图片，网站目前支持「图壳」图床，失败率低，但是只可保存一天用于排版
 
 **注：仅支持 https 的图片，图片粘贴到微信、知乎或掘金时会自动上传其服务器，不必担心使用上述图床会导致图片丢失**。
 
@@ -234,20 +233,12 @@ yaml
 
 如果想要更换代码主题，可在上方挑选，不支持代码主题自定义。
 
-其中**微信代码主题与微信官方一致**，有以下注意事项：
-
-- 带行号且不换行，代码大小与官方一致
-- 需要在代码块处标志语言，否则无法高亮
-- 粘贴到公众号后，用鼠标点代码块内外一次，完成高亮
-
-diff 不能同时和其他语言的高亮同时显示，且需要调整代码主题为微信代码主题以外的代码主题才能看到 diff 效果，使用效果如下:
+diff 不能同时和其他语言的高亮同时显示，使用效果如下:
 
 \`\`\`diff
 + 新增项
 - 删除项
 \`\`\`
-
-**其他主题不带行号，可自定义是否换行，代码大小与当前编辑器一致**
 
 ### 4.3 数学公式
 
@@ -317,5 +308,5 @@ Markdown Bore 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
 
 ### 5.3 更多文档
 
-更多文档请参考 [markdown-Bore-docs](https://preview.mdBore.com/articles/ "更多文档")
+更多文档请参考 [Markdown-Bore-docs](https://b.ore.work/articles/ "更多文档")
 `
