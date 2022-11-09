@@ -25,11 +25,7 @@ function toggleDarkMode() {
   let isDarkMode =
     window.localStorage.isDarkMode === "true" ||
     (!("isDarkMode" in window.localStorage) && isSystemDarkMode);
-  if (isDarkMode) {
-    delete window.localStorage.isDarkMode;
-  } else {
-    window.localStorage.isDarkMode = 'true';
-  }
+  window.localStorage.isDarkMode = String(!isDarkMode)
   updateMode();
 }
 function disableTransitionsTemporarily() {
