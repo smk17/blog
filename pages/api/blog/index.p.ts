@@ -8,7 +8,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'GET') {
       const current = +(req.query.current || 1) - 1;
       const pageSize = +(req.query.pageSize || 10);
-      const ret = await descriptor(findBlogAndCount)({ current, pageSize });
+      const ret = await descriptor(findBlogAndCount)({
+        current,
+        pageSize,
+        fields: ['_id', 'title', 'slug', 'recommend', 'createdAt', 'updatedAt'],
+      });
       res.status(200).json(ret);
       return;
     }

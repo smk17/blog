@@ -1,20 +1,17 @@
-export default `![](/ex/logo.svg)
+export default `![](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
 请使用 **Chrome** 浏览器。
 
 请阅读下方文本熟悉工具使用方法，本文可直接拷贝到微信中预览。
 
-## 1 Markdown Nice 简介
+## 1 Markdown Bore 简介
 
 - 支持自定义样式的 Markdown 编辑器
 - 支持微信公众号、知乎和稀土掘金
-- 欢迎扫码回复「排版」加入用户群
-
-![](/ex/wechat.jpg)
 
 ## 2 主题
 
-**https://preview.mdnice.com/themes/**
+**https://preview.mdBore.com/themes/**
 
 欢迎提交主题，提供更多文章示例~~
 
@@ -91,9 +88,9 @@ _这个是斜体_
 > 
 > 读一本好书，就是在和高尚的人谈话。 **——歌德**
 > 
-> [Markdown Nice最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
+> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 > 
-> ![这里写图片描述](/ex/wechat.jpg)
+> ![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
 当使用多个 \`>\` 符号时，就会变成多级引用
 
@@ -103,9 +100,9 @@ _这个是斜体_
 >>
 >> 读一本好书，就是在和高尚的人谈话。 **——歌德**
 >>
->> [Markdown Nice最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
+>> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 >> 
->> ![这里写图片描述](/ex/wechat.jpg)
+>> ![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
 三级引用如下：
 
@@ -113,9 +110,9 @@ _这个是斜体_
 >>>
 >>> 读一本好书，就是在和高尚的人谈话。 **——歌德**
 >>>
->>> [Markdown Nice最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
+>>> [Markdown Bore最全功能介绍](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 >>> 
->>> ![这里写图片描述](/ex/wechat.jpg)
+>>> ![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
 ### 3.7 分割线
 
@@ -151,19 +148,19 @@ _这个是斜体_
 
 插入图片，如果是行内图片则无图例，否则有图例，格式如下：
 
-![这里写图片描述](/ex/wechat.jpg)
+![这里写图片描述](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png)
 
 可以通过在图片尾部添加宽度和高度控制图片大小，用法如下：
 
-![同时设置宽度和高度](/ex/logo.png =150x150)
+![同时设置宽度和高度](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png =150x150)
 
-![只设置宽度，推荐使用百分比](/ex/logo.png =40%x)
+![只设置宽度，推荐使用百分比](https://pic4.zhimg.com/80/v2-a5b052b1f8952997f586f530c648847d.png =40%x)
 
 该语法比较特殊，其他 Markdown 编辑器不完全通用。
 
 支持 jpg、png、gif、svg 等图片格式，**其中 svg 文件仅可在微信公众平台中使用**，svg 文件示例如下：
 
-![](/ex/i-am-svg.svg)
+![i-am-svg.svg](https://1024-staging-1258723534.cos.ap-guangzhou.myqcloud.com/avatar/2022110914-QFjSUP6QV68psowU.svg)
 
 - 支持图片**拖拽和截图粘贴**到编辑器中上传，上传时使用当前选择的图床。
 - 可使用**格式->图片**上传本地图片，网站目前支持「图壳」图床，失败率低，但是只可保存一天用于排版
@@ -172,8 +169,7 @@ _这个是斜体_
 
 图片还可以和链接嵌套使用，能够实现推荐卡片的效果，用法如下：
 
-[![Markdown Nice 最全功能介绍](/ex/dance.gif)](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
-
+[![Markdown Bore 最全功能介绍](https://pic4.zhimg.com/80/v2-2cafe373690e7ff9131a97c12e6a3a94.gif)](https://mp.weixin.qq.com/s/lM808MxUu6tp8zU8SBu3sg)
 ## 4. 特殊语法
 
 ### 4.1 脚注
@@ -296,7 +292,7 @@ TOC 全称为 Table of Content，列出全部标题。由于示例标题过多�
 
 支持注音符号，用法如下：
 
-Markdown Nice 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
+Markdown Bore 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
 
 ### 4.6 横屏滑动幻灯片
 
@@ -304,7 +300,7 @@ Markdown Nice 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
 
 通过\`<![](url),![](url)>\`这种语法设置横屏滑动滑动片，具体用法如下：
 
-<![蓝1](/ex/blue.jpg),![绿2](/ex/green.jpg),![红3](/ex/red.jpg)>
+<![蓝1](https://pic4.zhimg.com/80/v2-c9c93ba97d102aaf15feeb900dbdb7e0.jpg),![绿2](https://pic4.zhimg.com/80/v2-7bdcaa4bf0c77bed7cff041fcf696312.jpg),![红3](https://pic4.zhimg.com/80/v2-3692e14a17fc2bb9267343437c7deba4.jpg)>
 
 ## 5 其他语法
 
@@ -321,5 +317,5 @@ Markdown Nice 这么好用，简直是{喜大普奔|hē hē hē hē}呀！
 
 ### 5.3 更多文档
 
-更多文档请参考 [markdown-nice-docs](https://preview.mdnice.com/articles/ "更多文档")
+更多文档请参考 [markdown-Bore-docs](https://preview.mdBore.com/articles/ "更多文档")
 `

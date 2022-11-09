@@ -18,8 +18,8 @@ interface Window {
 }
 
 declare namespace Pagination {
-  interface Params {
-    [key: string]: any;
+  interface Params<T extends string = string> extends Record<string, any> {
+    fields?: T[];
     current: number;
     pageSize: number;
   }

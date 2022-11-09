@@ -14,7 +14,7 @@ interface Timestamps {
   updatedAt: string;
 }
 
-export type IModel = Timestamps & { id: string };
+export type IModel = Timestamps & { _id: string };
 
 async function dbConnect() {
   if (connection.readyState >= 1) {

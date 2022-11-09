@@ -1,13 +1,12 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import { useRequest } from 'ahooks';
-import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { Spin, Button, Result } from 'antd';
 import { signOut, useSession } from 'next-auth/react';
 import { ProLayout, PageContainer } from 'procomponents';
 import { LoadingOutlined, LogoutOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { defaultProps } from './defaultProps';
-import { AntLayout } from 'components/AntLayout';
 
 interface Props {
   children?: React.ReactNode;
@@ -21,10 +20,10 @@ export const AdminLayout = ({ children }: Props) => {
 
   return (
     <Spin spinning={loading}>
-      <div className={classNames('w-screen h-screen')}>
+      <div className="w-screen h-screen bg-white">
         {session?.user?.access ? (
           router.route.indexOf('/admin/blog/') === 0 ? (
-            <AntLayout>{children}</AntLayout>
+            children
           ) : (
             <ProLayout
               {...defaultProps}

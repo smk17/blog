@@ -159,6 +159,7 @@ export class Store {
   };
 
   unmount = () => {
+    this.editorView?.destroy();
     if (this.preview) {
       this.preview.removeEventListener('mouseover', this.mouseoverHandle);
       this.preview.removeEventListener('mouseleave', this.mouseleaveHandle);

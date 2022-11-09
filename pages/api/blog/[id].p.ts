@@ -8,7 +8,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const id = req.query.id as string;
 
     if (req.method === 'GET') {
-      const blog = await descriptor(getBlogById)(id);
+      const blog = await descriptor(getBlogById)(id, [
+        '_id',
+        'title',
+        'slug',
+        'description',
+        'recommend',
+        'cover',
+        'tags',
+      ]);
       res.status(200).json(blog.toJSON());
       return;
     }

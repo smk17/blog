@@ -8,6 +8,10 @@ import { SmileOutlined } from '@ant-design/icons';
 import { CODE_THEME_ID, THEME_ID } from './constant';
 import { MarkdownEditorProps, Store } from './store';
 
+import 'antd/lib/message/style';
+import 'antd/lib/button/style';
+import 'antd/lib/result/style';
+
 interface EditorProps {
   store: Store;
 }

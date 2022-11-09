@@ -31,13 +31,13 @@ export const Blog = createModel<IBlog>('Blog', {
   status: String,
 });
 
-export async function getBlog(slug: string) {
-  const doc = await Blog.findOne({ slug }).exec();
+export async function getBlog(slug: string, fields: Array<keyof BlogInfo> = ['_id']) {
+  const doc = await Blog.findOne({ slug }, fields).exec();
   return doc;
 }
 
-export async function getBlogById(id: string) {
-  const doc = await Blog.findById(id).exec();
+export async function getBlogById(id: string, fields: Array<keyof BlogInfo> = ['_id']) {
+  const doc = await Blog.findById(id, fields).exec();
   if (doc === null) {
     throw Error(`Blog 不存在`);
   }
@@ -158,8 +158,13 @@ export async function createBlog(blog: Omit<IBlog, 'cover'> & { cover?: string }
   return doc;
 }
 
-export async function findBlog({ current, pageSize, ...blog }: Pagination.Params) {
-  const blogs = await Blog.find(blog)
+export async function findBlog({
+  current,
+  pageSize,
+  fields,
+  ...blog
+}: Pagination.Params<keyof BlogInfo>) {
+  const blogs = await Blog.find(blog, fields)
     .populate('cover')
     .skip(current * pageSize)
     .limit(pageSize)
@@ -169,13 +174,14 @@ export async function findBlog({ current, pageSize, ...blog }: Pagination.Params
   return blogs;
 }
 
-export async function getBlogCount(blog: Partial<IBlog> = {}) {
-  const total = await Blog.find(blog).count().exec();
+export async function getBlogCount(blog: Record<string, any>, fields?: Array<keyof BlogInfo>) {
+  const total = await Blog.find(blog, fields).count().exec();
   return total;
 }
 
-export async function findBlogAndCount(params: Pagination.Params) {
-  const total = await getBlogCount(params.blog);
+export async function findBlogAndCount(params: Pagination.Params<keyof BlogInfo>) {
+  const { current, pageSize, fields, ...blog } = params;
+  const total = await getBlogCount(blog, fields);
   const blogs = await findBlog(params);
 
   return { success: true, total, data: blogs };
