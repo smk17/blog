@@ -40,11 +40,10 @@ const Home: NextPage<{ list: BlogInfo[] }> = ({ list }) => {
             <div className="mx-auto max-w-2xl lg:max-w-5xl">
               <header className="max-w-2xl">
                 <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                  Writing on software design, company building, and the aerospace industry.
+                  文章
                 </h1>
                 <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                  All of my long-form thoughts on programming, leadership, product design, and more,
-                  collected in chronological order.
+                  我所有关于编程、阅读、人生等的长期想法与思考，都按时间顺序收集。
                 </p>
               </header>
               <div className="mt-16 sm:mt-20">

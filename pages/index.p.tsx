@@ -1,24 +1,33 @@
 import classNames from 'classnames';
-import type { NextPage, GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { serializable } from 'utils';
 import { BlogInfo, descriptor, findBlog } from 'collections';
 import { Article } from 'components';
+import moment from 'moment';
 
 const imgs = [
-  { src: '/media/image-1.webp', width: 3744, height: 5616 },
-  { src: '/media/image-2.webp', width: 3936, height: 2624 },
-  { src: '/media/image-3.webp', width: 5760, height: 3840 },
-  { src: '/media/image-4.webp', width: 2400, height: 3000 },
-  { src: '/media/image-5.webp', width: 4240, height: 2384 },
+  { src: '/media/01.jpeg', height: 1265, width: 938 },
+  { src: '/media/02.jpeg', height: 3024, width: 2268 },
+  { src: '/media/03.jpeg', height: 4032, width: 3024 },
+  { src: '/media/04.jpeg', height: 4032, width: 3024 },
+  { src: '/media/05.jpeg', height: 1277, width: 1046 },
 ];
+function formatDate(date: string | Date = new Date()) {
+  return moment.utc(date).utcOffset('+08:00').format('YYYY-MM-DD');
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const list = await descriptor(findBlog)({ current: 0, pageSize: 3 });
-
+  const rows = await descriptor(findBlog)({ recommend: true, current: 0, pageSize: 3 });
+  const articles = serializable(
+    serializable(rows).map((row) => {
+      row.createdAt = formatDate(row.createdAt);
+      return row;
+    }),
+  );
   return {
-    props: { articles: serializable(list) },
+    props: { articles },
     revalidate: 60,
   };
 };

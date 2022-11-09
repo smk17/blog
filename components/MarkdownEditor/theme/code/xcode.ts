@@ -103,13 +103,13 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
   font-style: italic;
 }
 
-#nice .custom code {
+#bore .custom code {
   padding-top: 15px;
   background: #fff;
   border-radius: 5px;
 }
 
-#nice .custom {
+#bore .custom {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
 }`;

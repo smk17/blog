@@ -8,6 +8,7 @@ import { SessionProvider, SessionProviderProps } from 'next-auth/react';
 
 import 'focus-visible/dist/focus-visible.min.js';
 import 'styles/globals.css';
+import { CODE_THEME_ID, THEME_ID } from 'components/MarkdownEditor/constant';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -28,6 +29,8 @@ function MyApp({
       <Layout>
         <Head>
           <title>{process.env.title}</title>
+          <style id={THEME_ID}></style>
+          <style id={CODE_THEME_ID}></style>
         </Head>
         <Script id="darkMode" dangerouslySetInnerHTML={{ __html: darkMode }} />
         <Component {...pageProps} />

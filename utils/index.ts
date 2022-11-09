@@ -1,6 +1,7 @@
 export * from './request';
 export * from './render-to-body';
 export * from './parse-markdown';
+export * from './init-mathjax';
 
 export function errorToJSON(error: Error | unknown) {
   return {

@@ -15,6 +15,7 @@ const menus = [
 
 const Menus = () => {
   const router = useRouter();
+
   return (
     <div className="flex basis-2/4 justify-end md:justify-center">
       <Popover className="pointer-events-auto md:hidden">
@@ -79,13 +80,13 @@ const Menus = () => {
                 <a
                   className={classNames(
                     'relative block px-3 py-2 transition',
-                    path === router.route
+                    path === router.asPath
                       ? 'text-teal-500 dark:text-teal-400'
                       : 'hover:text-teal-500 dark:hover:text-teal-400',
                   )}
                 >
                   {name}
-                  {path === router.route && (
+                  {path === router.asPath && (
                     <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"></span>
                   )}
                 </a>
@@ -124,20 +125,21 @@ export const Header = () => {
                       transform: 'var(--avatar-border-transform)',
                     }}
                   ></div>
-                  <a
-                    aria-label="Home"
-                    className="block h-16 w-16 origin-left pointer-events-auto"
-                    href="https://spotlight.tailwindui.com/"
-                    style={{ transform: 'var(--avatar-image-transform)' }}
-                  >
-                    <Image
-                      className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 h-16 w-16"
-                      sizes="4rem"
-                      width={512}
-                      height={512}
-                      src="/media/avatar.jpg"
-                    ></Image>
-                  </a>
+                  <Link href="/">
+                    <a
+                      aria-label="Home"
+                      className="block h-16 w-16 origin-left pointer-events-auto"
+                      style={{ transform: 'var(--avatar-image-transform)' }}
+                    >
+                      <Image
+                        className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 h-16 w-16"
+                        sizes="4rem"
+                        width={512}
+                        height={512}
+                        src="/media/avatar.jpg"
+                      ></Image>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

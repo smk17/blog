@@ -5,7 +5,7 @@ import { Button, Result } from 'antd';
 import { isPC } from 'utils';
 import { useMount, useUnmount } from 'ahooks';
 import { SmileOutlined } from '@ant-design/icons';
-import { CODE_THEME_ID, THEME_ID } from './constant';
+import { CODE_THEME_ID, PREVIEW_ID, THEME_ID } from './constant';
 import { MarkdownEditorProps, Store } from './store';
 
 import 'antd/lib/message/style';
@@ -46,7 +46,7 @@ const Editor = observer<EditorProps>(({ store }) => {
             ref={preview}
           >
             <section
-              id={'nice'}
+              id={PREVIEW_ID}
               data-tool="mdnice编辑器"
               data-website="https://www.mdnice.com"
               dangerouslySetInnerHTML={{
@@ -84,15 +84,7 @@ function MarkdownEditor(props: MarkdownEditorProps) {
       />
     );
   };
-  return (
-    <>
-      <Head>
-        <style id={THEME_ID}></style>
-        <style id={CODE_THEME_ID}></style>
-      </Head>
-      {render()}
-    </>
-  );
+  return render();
 }
 
 export default MarkdownEditor;

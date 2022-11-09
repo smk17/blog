@@ -163,7 +163,7 @@ export async function findBlog({
   pageSize,
   fields,
   ...blog
-}: Pagination.Params<keyof BlogInfo>) {
+}: Pagination.Params) {
   const blogs = await Blog.find(blog, fields)
     .populate('cover')
     .skip(current * pageSize)
@@ -174,7 +174,7 @@ export async function findBlog({
   return blogs;
 }
 
-export async function getBlogCount(blog: Record<string, any>, fields?: Array<keyof BlogInfo>) {
+export async function getBlogCount(blog: Record<string, any> = {}, fields?: Array<keyof BlogInfo>) {
   const total = await Blog.find(blog, fields).count().exec();
   return total;
 }

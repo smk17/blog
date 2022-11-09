@@ -1,7 +1,7 @@
 export default `/*默认样式，最佳实践*/
 
 /*全局属性*/
-#nice {
+#bore {
   font-size: 16px;
   color: black;
   padding: 0 10px;
@@ -16,7 +16,7 @@ export default `/*默认样式，最佳实践*/
 }
 
 /*段落*/
-#nice p {
+#bore p {
   font-size: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -26,75 +26,75 @@ export default `/*默认样式，最佳实践*/
 }
 
 /*标题*/
-#nice h1,
-#nice h2,
-#nice h3,
-#nice h4,
-#nice h5,
-#nice h6 {
+#bore h1,
+#bore h2,
+#bore h3,
+#bore h4,
+#bore h5,
+#bore h6 {
   margin-top: 30px;
   margin-bottom: 15px;
   padding: 0px;
   font-weight: bold;
   color: black;
 }
-#nice h1 {
+#bore h1 {
   font-size: 24px;
 }
-#nice h2 {
+#bore h2 {
   font-size: 22px;
 }
-#nice h3 {
+#bore h3 {
   font-size: 20px;
 }
-#nice h4 {
+#bore h4 {
   font-size: 18px;
 }
-#nice h5 {
+#bore h5 {
   font-size: 16px;
 }
-#nice h6 {
+#bore h6 {
   font-size: 16px;
 }
 
-#nice h1 .prefix,
-#nice h2 .prefix,
-#nice h3 .prefix,
-#nice h4 .prefix,
-#nice h5 .prefix,
-#nice h6 .prefix {
+#bore h1 .prefix,
+#bore h2 .prefix,
+#bore h3 .prefix,
+#bore h4 .prefix,
+#bore h5 .prefix,
+#bore h6 .prefix {
   display: none;
 }
 
-#nice h1 .suffix
-#nice h2 .suffix,
-#nice h3 .suffix,
-#nice h4 .suffix,
-#nice h5 .suffix,
-#nice h6 .suffix {
+#bore h1 .suffix
+#bore h2 .suffix,
+#bore h3 .suffix,
+#bore h4 .suffix,
+#bore h5 .suffix,
+#bore h6 .suffix {
   display: none;
 }
 
 /*列表*/
-#nice ul,
-#nice ol {
+#bore ul,
+#bore ol {
   margin-top: 8px;
   margin-bottom: 8px;
   padding-left: 25px;
   color: black;
 }
-#nice ul {
+#bore ul {
   list-style-type: disc;
 }
-#nice ul ul {
+#bore ul ul {
   list-style-type: square;
 }
 
-#nice ol {
+#bore ol {
   list-style-type: decimal;
 }
 
-#nice li section {
+#bore li section {
   margin-top: 5px;
   margin-bottom: 5px;
   line-height: 26px;
@@ -104,11 +104,11 @@ export default `/*默认样式，最佳实践*/
 }
 
 /*引用*/
-#nice blockquote {
+#bore blockquote {
   border: none;
 }
 
-#nice .multiquote-1 {
+#bore .multiquote-1 {
   display: block;
   font-size: 0.9em;
   overflow: auto;
@@ -124,42 +124,42 @@ export default `/*默认样式，最佳实践*/
   margin-top: 20px;
 }
 
-#nice .multiquote-1 p {
+#bore .multiquote-1 p {
   margin: 0px;
   color: black;
   line-height: 26px;
 }
 
-#nice .multiquote-2 {
+#bore .multiquote-2 {
   box-shadow: 1px 1px 10px rgba(0,0,0,0.2);
   padding: 20px;
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
-#nice .multiquote-3 {
+#bore .multiquote-3 {
   box-shadow: 1px 1px 10px rgba(0,0,0,0.2);
   padding: 20px;
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
-#nice .multiquote-3 p {
+#bore .multiquote-3 p {
   text-align: center;
 }
 
-#nice .multiquote-3 h3 {
+#bore .multiquote-3 h3 {
   text-align: center;
 }
 
-#nice .table-of-contents a {
+#bore .table-of-contents a {
   border: none;
   color: black;
   font-weight: normal;
 }
 
 /*链接*/
-#nice a {
+#bore a {
   text-decoration: none;
   color: #1e6bb8;
   word-wrap: break-word;
@@ -168,31 +168,31 @@ export default `/*默认样式，最佳实践*/
 }
 
 /*加粗*/
-#nice strong {
+#bore strong {
   font-weight: bold;
   color: black;
 }
 
 /*斜体*/
-#nice em {
+#bore em {
   font-style: italic;
   color: black;
 }
 
 /*加粗斜体*/
-#nice em strong {
+#bore em strong {
   font-weight: bold;
   color: black;
 }
 
 /*删除线*/
-#nice del {
+#bore del {
   font-style: italic;
   color: black;
 }
 
 /*分隔线*/
-#nice hr {
+#bore hr {
   height: 1px;
   margin: 0;
   margin-top: 10px;
@@ -202,24 +202,24 @@ export default `/*默认样式，最佳实践*/
 }
 
 /*代码块*/
-#nice pre {
+#bore pre {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#nice pre code {
+#bore pre code {
   display: -webkit-box;
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
   border-radius: 0px;
   font-size: 12px;
   -webkit-overflow-scrolling: touch;
 }
-#nice pre code span {
+#bore pre code span {
   line-height: 26px;
 }
 
 /*行内代码*/
-#nice p code,
-#nice li code {
+#bore p code,
+#bore li code {
   font-size: 14px;
   word-wrap: break-word;
   padding: 2px 4px;
@@ -232,21 +232,21 @@ export default `/*默认样式，最佳实践*/
 }
 
 /*图片*/
-#nice img {
+#bore img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
 }
 
 /*图片*/
-#nice figure {
+#bore figure {
   margin: 0;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 /*图片描述文字*/
-#nice figcaption {
+#bore figcaption {
   margin-top: 5px;
   text-align: center;
   color: #888;
@@ -255,63 +255,63 @@ export default `/*默认样式，最佳实践*/
 
 
 /*表格容器 */
-#nice .table-container{
+#bore .table-container{
   overflow-x: auto;
 }
 
 /*表格*/
-#nice table {
+#bore table {
   display: table;
   text-align: left;
 }
-#nice tbody {
+#bore tbody {
   border: 0;
 }
 
-#nice table tr {
+#bore table tr {
   border: 0;
   border-top: 1px solid #ccc;
   background-color: white;
 }
 
-#nice table tr:nth-child(2n) {
+#bore table tr:nth-child(2n) {
   background-color: #F8F8F8;
 }
 
-#nice table tr th,
-#nice table tr td {
+#bore table tr th,
+#bore table tr td {
   font-size: 16px;
   border: 1px solid #ccc;
   padding: 5px 10px;
   text-align: left;
 }
 
-#nice table tr th {
+#bore table tr th {
   font-weight: bold;
   background-color: #f0f0f0;
 }
 
 /* 表格最小列宽4个汉字 */
-#nice table tr th:nth-of-type(n),
-#nice table tr td:nth-of-type(n){
+#bore table tr th:nth-of-type(n),
+#bore table tr td:nth-of-type(n){
   min-width:85px;
 }
 
-#nice .footnote-word {
+#bore .footnote-word {
   color: #1e6bb8;
   font-weight: bold;
 }
 
-#nice .footnote-ref {
+#bore .footnote-ref {
   color: #1e6bb8;
   font-weight: bold;
 }
 
-#nice .footnote-item {
+#bore .footnote-item {
   display: flex;
 }
 
-#nice .footnote-num {
+#bore .footnote-num {
   display: inline;
   width: 10%; /*神奇，50px就不可以*/
   background: none;
@@ -321,7 +321,7 @@ export default `/*默认样式，最佳实践*/
   font-family: ptima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-#nice .footnote-item p {
+#bore .footnote-item p {
   display: inline;
   font-size: 14px;
   width: 90%;
@@ -333,17 +333,17 @@ export default `/*默认样式，最佳实践*/
   width: calc(100%-50)
 }
 
-#nice sub, sup {
+#bore sub, sup {
   line-height: 0;
 }
 
-#nice .footnotes-sep:before {
+#bore .footnotes-sep:before {
   content: "参考资料";
   display: block;
 }
 
 /* 解决公式问题 */
-#nice .block-equation {
+#bore .block-equation {
   display:block;
   text-align: center;
   overflow: auto;
@@ -351,18 +351,18 @@ export default `/*默认样式，最佳实践*/
   -webkit-overflow-scrolling: touch;
 }
 
-#nice .block-equation svg {
+#bore .block-equation svg {
   max-width: 300% !important;
   -webkit-overflow-scrolling: touch;
 }
 
-#nice .inline-equation {
+#bore .inline-equation {
 }
 
-#nice .inline-equation svg {
+#bore .inline-equation svg {
 }
 
-#nice .imageflow-layer1 {
+#bore .imageflow-layer1 {
   margin-top: 1em;
   margin-bottom: 0.5em;
   white-space: normal;
@@ -371,13 +371,13 @@ export default `/*默认样式，最佳实践*/
   overflow: hidden;
 }
 
-#nice .imageflow-layer2 {
+#bore .imageflow-layer2 {
   white-space: nowrap;
   width: 100%;
   overflow-x: scroll;
 }
 
-#nice .imageflow-layer3 {
+#bore .imageflow-layer3 {
   display: inline-block;
   word-wrap: break-word;
   white-space: normal;
@@ -385,30 +385,30 @@ export default `/*默认样式，最佳实践*/
   width: 100%;
 }
 
-#nice .imageflow-img {
+#bore .imageflow-img {
   display: inline-block;
 }
 
-#nice .imageflow-caption {
+#bore .imageflow-caption {
   text-align: center;
   margin-top: 0px;
   padding-top: 0px;
   color: #888;
 }
 
-#nice .nice-suffix-juejin-container {
+#bore .bore-suffix-juejin-container {
   margin-top: 20px !important;
 }
 
-#nice figure a {
+#bore figure a {
   border: none;
 }
 
-#nice figure a img {
+#bore figure a img {
   margin: 0px;
 }
 
-#nice figure {
+#bore figure {
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -416,14 +416,14 @@ export default `/*默认样式，最佳实践*/
 }
 
 /* 图片链接嵌套 */
-#nice figure a {
+#bore figure a {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 /* 图片链接嵌套，图片解释 */
-#nice figure a + figcaption {
+#bore figure a + figcaption {
   display: flex;
   justify-content: center;
   align-items: center;
